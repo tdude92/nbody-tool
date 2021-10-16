@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.15.0)
 project(nbodytool LANGUAGES CXX)
 
-option(BUILDTESTS "Build tests" OFF)
-option(USECUDA "Use CUDA Acceleration" OFF)
+option(BUILD_TYPE "Build Type" Release)
+option(BUILD_TESTS "Build tests" OFF)
+option(USE_CUDA "Use CUDA Acceleration" OFF)
 
 if(USECUDA)
     enable_language(CUDA)
 endif()
 
+set(CMAKE_BUILD_TYPE ${BUILD_TYPE})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -24,16 +26,15 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/O2)
 endif()
 
-
 include_directories(
     include/
     deps/
+    deps/eigen-3.4.0/Eigen/
 )
-
 
 add_subdirectory(src/)
 
-if(BUILDTESTS)
+if(BUILD_TESTS)
     add_subdirectory(deps/googletest/)
     add_subdirectory(test/)
 endif()

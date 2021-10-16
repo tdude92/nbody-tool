@@ -2,21 +2,23 @@
 A portable Barnes-Hut n-body simulation tool for C++
 
 ## Compiling From Source
-CMake and MSVC from Visual Studio Community 2019 must be installed.
+CMake and g++ must be installed.\
+To use CUDA, the toolkit must be installed on the system with `nvcc` in PATH.
+On Windows, `MSVC` must be used instead of g++.\
 In the project root,
 ```
-cmake -S . -B build/ -D BUILDTESTS=OFF -D USECUDA=OFF
+cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
 cd build/
 make all
 ```
-To compile tests, change `BUILDTESTS=OFF` to `BUILDTESTS=ON` in the cmake command.\
-Similarly, change `USECUDA=OFF` to `USECUDA=ON` to use CUDA if available.\
+To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
+Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to use CUDA if available.\
 The resulting static lib `libnbodytool.a` can be found in `build/src/`\
 `nbodytool_test` can be found in `build/test` if compiled.
 
 If using MinGW or MinGW64 on Windows, the process only slightly differs:
 ```
-cmake -S . -B build/ -D BUILDTESTS=OFF -G "MinGW Makefiles"
+cmake -S . -B build/ -D BUILD_TESTS=OFF -D BUILD_TYPE=Release -G "MinGW Makefiles"
 cd build/
 mingw32-make all
 ```

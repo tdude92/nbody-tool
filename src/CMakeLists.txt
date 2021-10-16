@@ -1,9 +1,14 @@
 set(BINARY ${CMAKE_PROJECT_NAME})
-set(
-    SOURCES
-    Integrator.cpp
-    Octree.cpp
-    Simulator.cpp
-)
+
+if(USE_CUDA)
+    set(
+        SOURCES
+    )
+else()
+    set(
+        SOURCES
+        cpu/simulator2d.cpp
+    )
+endif()
 
 add_library(${BINARY} STATIC ${SOURCES})
