@@ -23,3 +23,4 @@ mingw32-make all
 CUDA cannot be used on Windows without the MSVC compiler (so MinGW can only compile the CPU version of this lib).
 
 TODO update for MSVC
+TODO set up Doxygen
