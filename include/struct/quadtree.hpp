@@ -9,6 +9,9 @@ struct QuadtreeNode {
 };
 
 
+/**
+ * @brief Quadtree struct used in Simulator2d
+ */
 class Quadtree {
     // TODO Quadtree class
     private:
