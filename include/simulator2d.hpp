@@ -1,10 +1,10 @@
 #ifndef NBT_SIMULATOR_HPP
 #define NBT_SIMULATOR_HPP
 
-#include <Eigen>
 #include <vector>
 #include <cstdint>
 
+#include <Eigen>
 #include "integrator.hpp"
 #include "struct/rigidbody.hpp"
 #include "struct/quadtree.hpp"
@@ -17,7 +17,7 @@
 class Simulator2d {
     private:
         const double timeStep;              //!< dt value used in integrators.
-        const uint64_t maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
+        const uint32_t maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
         const Integrator* const integrator; //!< Stores type of integrator used in this simulation.
         
         // Structure of arrays for object properties
@@ -28,17 +28,18 @@ class Simulator2d {
         Eigen::Matrix<double, 2, Eigen::Dynamic> a;     //!< 2D acceleration of each object packed into a 2 x N matrix.
     
         uint64_t iteration = 0;               //!< Current iteration of the simulation.
+        
+        // SoA is ensured to be densely packed from idx 0 to idx maxObjects - 1
         uint64_t nextIdx = 0;                 //!< Next available index to be assigned to a newly created Rigidbody.
-        std::vector<Rigidbody> activeObjects; //!< Vector of indices to currently active objects. Used to slice array structure.
+       
+        /*! Returns slice of array structure component with only active objects. */
+        Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>> active(Eigen::Matrix<double, 1, Eigen::Dynamic>& mat);
         
         /*! Returns slice of array structure component with only active objects. */
-        Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>> active(const Eigen::Matrix<double, 1, Eigen::Dynamic> mat, std::vector<int> mask); // TODO active 1d
-        
-        /*! Returns slice of array structure component with only active objects. */
-        Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> active(const Eigen::Matrix<double, 2, Eigen::Dynamic> mat, std::vector<int> mask); // TODO active 2d
+        Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> active(Eigen::Matrix<double, 2, Eigen::Dynamic>& mat);
     public:
         /*! Constructs a Simulator2d object. */
-        Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator); // TODO constructor 2d
+        Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator);
         
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d(); // TODO destructor 2d

@@ -7,7 +7,7 @@
  *  Simulated objects are represented as the index to
  *  their column in the simulator's structure of arrays.
  */
-typedef uint32_t Rigidbody;
+typedef uint64_t Rigidbody;
 
 /**
  * Struct that contains pointers to the data of a Rigidbody

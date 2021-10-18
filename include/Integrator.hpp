@@ -40,7 +40,7 @@ class VerletIntegrator: public Integrator {
                              const Eigen::Matrix<double, 3, Eigen::Dynamic>& a,
                              Eigen::Matrix<double, 3, Eigen::Dynamic>& v,
                              Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO verlet 3d
-}
+};
 
 
 class RungeKuttaIntegrator: public Integrator {
@@ -53,6 +53,6 @@ class RungeKuttaIntegrator: public Integrator {
                                  const Eigen::Matrix<double, 3, Eigen::Dynamic>& a,
                                  Eigen::Matrix<double, 3, Eigen::Dynamic>& v,
                                  Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO runge kutta 3d
-}
+};
 
 #endif
