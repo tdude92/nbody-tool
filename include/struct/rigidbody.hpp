@@ -18,8 +18,8 @@ struct RigidbodyData {
     Eigen::Map<Eigen::Vector3d> pos;
     Eigen::Map<Eigen::Vector3d> v;
     Eigen::Map<Eigen::Vector3d> a;
-    double* m;
-    double* r;
+    const double* m;
+    const double* r;
 };
 
 #endif

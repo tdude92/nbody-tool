@@ -1,77 +1,58 @@
+// TODO write docstrings
+
 #ifndef NBT_INTEGRATOR
 #define NBT_INTEGRATOR
 
 #include <Eigen>
 
 /**
- * Used to identify integrator type used in simulators.s
+ * Abstract function object for integrators
  */
-enum class Integrator {
-    Euler = 0,
-    Verlet,
-    RungeKutta
+class Integrator {
+    public:
+        virtual void integrate(double dt,
+                               const Eigen::Matrix<double, 2, Eigen::Dynamic>& a,
+                               Eigen::Matrix<double, 2, Eigen::Dynamic>& v,
+                               Eigen::Matrix<double, 2, Eigen::Dynamic>& x) = 0;
 };
 
-/**
- * @brief 2D Euler integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void eulerIntegrate(double dt, const Eigen::Matrix<double, 2, Eigen::Dynamic>& a, Eigen::Matrix<double, 2, Eigen::Dynamic>& v, Eigen::Matrix<double, 2, Eigen::Dynamic>& x); //TODO euler 2d
 
-/**
- * @brief 3D Euler integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void eulerIntegrate(double dt, const Eigen::Matrix<double, 3, Eigen::Dynamic>& a, Eigen::Matrix<double, 3, Eigen::Dynamic>& v, Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO euler 3d
+class EulerIntegrator: public Integrator {
+    public:
+        void integrate(double dt,
+                       const Eigen::Matrix<double, 2, Eigen::Dynamic>& a,
+                       Eigen::Matrix<double, 2, Eigen::Dynamic>& v,
+                       Eigen::Matrix<double, 2, Eigen::Dynamic>& x); //TODO euler 2d
+        void integrate(double dt,
+                       const Eigen::Matrix<double, 3, Eigen::Dynamic>& a,
+                       Eigen::Matrix<double, 3, Eigen::Dynamic>& v,
+                       Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO euler 3d
+};
 
 
-/**
- * @brief 2D Verlet integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void verletIntegrate(double dt, const Eigen::Matrix<double, 2, Eigen::Dynamic>& a, Eigen::Matrix<double, 2, Eigen::Dynamic>& v, Eigen::Matrix<double, 2, Eigen::Dynamic>& x); // TODO verlet 2d
-
-/**
- * @brief 3D Verlet integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void verletIntegrate(double dt, const Eigen::Matrix<double, 3, Eigen::Dynamic>& a, Eigen::Matrix<double, 3, Eigen::Dynamic>& v, Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO verlet 3d
+class VerletIntegrator: public Integrator {
+    public:
+        void verletIntegrate(double dt,
+                             const Eigen::Matrix<double, 2, Eigen::Dynamic>& a,
+                             Eigen::Matrix<double, 2, Eigen::Dynamic>& v,
+                             Eigen::Matrix<double, 2, Eigen::Dynamic>& x); // TODO verlet 2d
+        void verletIntegrate(double dt,
+                             const Eigen::Matrix<double, 3, Eigen::Dynamic>& a,
+                             Eigen::Matrix<double, 3, Eigen::Dynamic>& v,
+                             Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO verlet 3d
+}
 
 
-/**
- * @brief 2D Runge-Kutta integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void rungeKuttaIntegrate(double dt, const Eigen::Matrix<double, 2, Eigen::Dynamic>& a, Eigen::Matrix<double, 2, Eigen::Dynamic>& v, Eigen::Matrix<double, 2, Eigen::Dynamic>& x); // TODO runge kutta 2d
-
-/**
- * @brief 3D Runge-Kutta integrator
- * 
- * @param dt Time step
- * @param a Accelerations
- * @param v Velocities
- * @param x Positions
- */
-void rungeKuttaIntegrate(double dt, const Eigen::Matrix<double, 3, Eigen::Dynamic>& a, Eigen::Matrix<double, 3, Eigen::Dynamic>& v, Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO runge kutta 3d
+class RungeKuttaIntegrator: public Integrator {
+    public:
+        void rungeKuttaIntegrate(double dt,
+                                 const Eigen::Matrix<double, 2, Eigen::Dynamic>& a,
+                                 Eigen::Matrix<double, 2, Eigen::Dynamic>& v,
+                                 Eigen::Matrix<double, 2, Eigen::Dynamic>& x); // TODO runge kutta 2d
+        void rungeKuttaIntegrate(double dt,
+                                 const Eigen::Matrix<double, 3, Eigen::Dynamic>& a,
+                                 Eigen::Matrix<double, 3, Eigen::Dynamic>& v,
+                                 Eigen::Matrix<double, 3, Eigen::Dynamic>& x); // TODO runge kutta 3d
+}
 
 #endif

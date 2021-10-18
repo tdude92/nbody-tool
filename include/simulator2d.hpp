@@ -2,7 +2,6 @@
 #define NBT_SIMULATOR_HPP
 
 #include <Eigen>
-#include <array>
 #include <vector>
 #include <cstdint>
 
@@ -17,22 +16,29 @@
  */
 class Simulator2d {
     private:
-        const uint64_t maxObjects;      //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
-        const Integrator integrator;    //!< Stores type of integrator used in this simulation.
-        const double timeStep;          //!< dt value used in integrators.
-
-        /*! Function pointer to appropriate integrator */
-        double (Simulator2d::*integrate)(double dt, const Eigen::Matrix<double, 2, Eigen::Dynamic>& a, Eigen::Matrix<double, 2, Eigen::Dynamic>& v, Eigen::Matrix<double, 2, Eigen::Dynamic>& x);
-
+        const double timeStep;              //!< dt value used in integrators.
+        const uint64_t maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
+        const Integrator* const integrator; //!< Stores type of integrator used in this simulation.
+        
         // Structure of arrays for object properties
         Eigen::Matrix<double, 1, Eigen::Dynamic> m;     //!< Mass of each object packed into a 1 x N vector.
         Eigen::Matrix<double, 1, Eigen::Dynamic> r;     //!< Radius of each object packed into a 1 x N vector.
         Eigen::Matrix<double, 2, Eigen::Dynamic> pos;   //!< 2D position of each object packed into a 2 x N matrix.
         Eigen::Matrix<double, 2, Eigen::Dynamic> v;     //!< 2D velocity of each object packed into a 2 x N matrix.
         Eigen::Matrix<double, 2, Eigen::Dynamic> a;     //!< 2D acceleration of each object packed into a 2 x N matrix.
+    
+        uint64_t iteration = 0;               //!< Current iteration of the simulation.
+        uint64_t nextIdx = 0;                 //!< Next available index to be assigned to a newly created Rigidbody.
+        std::vector<Rigidbody> activeObjects; //!< Vector of indices to currently active objects. Used to slice array structure.
+        
+        /*! Returns slice of array structure component with only active objects. */
+        Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>> active(const Eigen::Matrix<double, 1, Eigen::Dynamic> mat, std::vector<int> mask); // TODO active 1d
+        
+        /*! Returns slice of array structure component with only active objects. */
+        Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> active(const Eigen::Matrix<double, 2, Eigen::Dynamic> mat, std::vector<int> mask); // TODO active 2d
     public:
         /*! Constructs a Simulator2d object. */
-        Simulator2d(uint64_t maxObjects, Integrator integrator = Integrator::Verlet); // TODO constructor 2d
+        Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator); // TODO constructor 2d
         
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d(); // TODO destructor 2d
