@@ -5,7 +5,7 @@
 
 // Simulator2d
 TEST(Simulator2d, ConstructorTest) {
-    // TODO write these tests later
+    Simulator2d simulator(1, 1000, nullptr);
 }
 
 TEST(Simulator2d, ActiveMethodTest) {

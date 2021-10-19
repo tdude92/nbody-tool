@@ -10,6 +10,7 @@
  */
 class Integrator {
     public:
+        // NOTE do these need to take map types?
         virtual void integrate(double dt,
                                const Eigen::Matrix<double, 2, Eigen::Dynamic>& a,
                                Eigen::Matrix<double, 2, Eigen::Dynamic>& v,
