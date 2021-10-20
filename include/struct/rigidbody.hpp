@@ -23,11 +23,15 @@ typedef Rigidbody RigidbodyIdx;
  * and Simulator3d::getObject (Simulator3d) methods.
  */
 struct RigidbodyData {
-    Eigen::Map<Eigen::Vector3d> pos;
-    Eigen::Map<Eigen::Vector3d> v;
-    Eigen::Map<Eigen::Vector3d> a;
+    Rigidbody* idx;
+    double** pos;
+    double** v;
+    double** a;
     double* m;
     double* r;
+
+    ~RigidbodyData();
+    bool exists();
 };
 
 #endif

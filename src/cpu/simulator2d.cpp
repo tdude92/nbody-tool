@@ -40,16 +40,37 @@ Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> Simulator2d::active(Eigen::
 
 
 RigidbodyData Simulator2d::getObject(Rigidbody id) {
+    // Returns RigidbodyData object with pointers to data on Rigidbody with id
     RigidbodyIdx idx = this->id2idx[id];
-    
-    // TODO Populate data
-    RigidbodyData data;
+    if (idx == RIGIDBODY_INDEX_NULL) {
+        throw std::out_of_range("ERROR: Rigidbody cannot be gotten as it does not exist.");
+    }
 
-    return data;
+    RigidbodyData rbData;
+
+    // TODO possible optimization
+    rbData.idx = &this->id2idx[id];
+
+    rbData.pos = new double*[2];
+    rbData.pos[0] = &this->pos(0, idx);
+    rbData.pos[1] = &this->pos(1, idx);
+
+    rbData.v = new double*[2];
+    rbData.v[0] = &this->v(0, idx);
+    rbData.v[1] = &this->v(1, idx);
+
+    rbData.a = new double*[2];
+    rbData.a[0] = &this->a(0, idx);
+    rbData.a[1] = &this->a(1, idx);
+
+    rbData.m = &this->m(idx);
+    rbData.r = &this->r(idx);
+
+    return rbData;
 }
 
 
-Rigidbody Simulator2d::addObject(double m, double r, const Eigen::Vector3d& p0, const Eigen::Vector3d& v0) {
+Rigidbody Simulator2d::addObject(double m, double r, const Eigen::Vector2d& p0, const Eigen::Vector2d& v0) {
     // Update SoA and nextIdx
 
     // Check for max number of objects reached
@@ -78,7 +99,7 @@ Rigidbody Simulator2d::addObject(double m, double r, const Eigen::Vector3d& p0, 
     this->r(idx) = r;
     this->pos(Eigen::all, idx) = p0;
     this->v(Eigen::all,   idx) = v0;
-    this->a(Eigen::all,   idx) = Eigen::Vector3d::Zero();
+    this->a(Eigen::all,   idx) = Eigen::Vector2d::Zero();
 
     return id;
 }

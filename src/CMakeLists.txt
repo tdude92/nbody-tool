@@ -8,6 +8,7 @@ if(USE_CUDA)
 else()
     set(
         SOURCES
+        cpu/struct/rigidbody.cpp
         cpu/simulator2d.cpp
     )
 endif()

@@ -16,6 +16,8 @@
  * Step simulation using step().
  */
 class Simulator2d {
+    friend struct RigidbodyData;
+
     private:
         const double timeStep;               //!< dt value used in integrators.
         const Rigidbody maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
@@ -52,7 +54,7 @@ class Simulator2d {
         RigidbodyData getObject(Rigidbody id); // TODO
 
         /*! Adds an object to the simulation. Can be done during the simulation if the #maxObjects is not met. */
-        Rigidbody addObject(double m, double r, const Eigen::Vector3d& p0, const Eigen::Vector3d& v0);
+        Rigidbody addObject(double m, double r, const Eigen::Vector2d& p0, const Eigen::Vector2d& v0);
         
         /*! Deletes an object from the simulation. */
         void delObject(Rigidbody id);
