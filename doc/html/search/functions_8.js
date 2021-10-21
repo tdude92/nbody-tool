@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verletintegrate_0',['verletIntegrate',['../integrator_8hpp.html#a178febd3d18670cd4bc82fa0f7fb6763',1,'verletIntegrate(double dt, const Eigen::Matrix&lt; double, 2, Eigen::Dynamic &gt; &amp;a, Eigen::Matrix&lt; double, 2, Eigen::Dynamic &gt; &amp;v, Eigen::Matrix&lt; double, 2, Eigen::Dynamic &gt; &amp;x):&#160;integrator.hpp'],['../integrator_8hpp.html#a40caeb43cc08eed917a1984349ccca1c',1,'verletIntegrate(double dt, const Eigen::Matrix&lt; double, 3, Eigen::Dynamic &gt; &amp;a, Eigen::Matrix&lt; double, 3, Eigen::Dynamic &gt; &amp;v, Eigen::Matrix&lt; double, 3, Eigen::Dynamic &gt; &amp;x):&#160;integrator.hpp']]]
+  ['_7esimulator2d_0',['~Simulator2d',['../class_simulator2d.html#adec92d298e0e0611d2f691d536a5fafc',1,'Simulator2d']]]
 ];

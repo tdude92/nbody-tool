@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rigidbodydata_0',['RigidbodyData',['../struct_rigidbody_data.html',1,'']]]
+  ['integrator_0',['Integrator',['../class_integrator.html',1,'']]]
 ];

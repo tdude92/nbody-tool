@@ -16,7 +16,7 @@ Simulator2d::Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integ
 , pos(2, maxObjects)
 , v(2, maxObjects)
 , a(2, maxObjects)
-, id2idx(maxObjects, RIGIDBODY_INDEX_NULL)
+, id2idx(maxObjects, RIGIDBODY_IDX_NULL)
 , idx2id(maxObjects, RIGIDBODY_ID_NULL)
 , availableUsedIDs{} {}
 
@@ -27,46 +27,9 @@ Simulator2d::~Simulator2d() {
 }
 
 
-Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>> Simulator2d::active(Eigen::Matrix<double, 1, Eigen::Dynamic>& mat) {
+Eigen::Ref<Eigen::Matrix2Xd> Simulator2d::active(Eigen::Ref<Eigen::Matrix2Xd> mat) {
     // Return map to slice (1, this->nextIdx). Works because SoA is densely packed.
-    return Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>>(&mat(0), 1, this->nextIdx);
-}
-
-
-Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> Simulator2d::active(Eigen::Matrix<double, 2, Eigen::Dynamic>& mat) {
-    // Return map to slice (1, this->nextIdx). Works because SoA is densely packed.
-    return Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>>(&mat(0), 2, this->nextIdx);
-}
-
-
-RigidbodyData Simulator2d::getObject(Rigidbody id) {
-    // Returns RigidbodyData object with pointers to data on Rigidbody with id
-    RigidbodyIdx idx = this->id2idx[id];
-    if (idx == RIGIDBODY_INDEX_NULL) {
-        throw std::out_of_range("ERROR: Rigidbody cannot be gotten as it does not exist.");
-    }
-
-    RigidbodyData rbData;
-
-    // TODO possible optimization
-    rbData.idx = &this->id2idx[id];
-
-    rbData.pos = new double*[2];
-    rbData.pos[0] = &this->pos(0, idx);
-    rbData.pos[1] = &this->pos(1, idx);
-
-    rbData.v = new double*[2];
-    rbData.v[0] = &this->v(0, idx);
-    rbData.v[1] = &this->v(1, idx);
-
-    rbData.a = new double*[2];
-    rbData.a[0] = &this->a(0, idx);
-    rbData.a[1] = &this->a(1, idx);
-
-    rbData.m = &this->m(idx);
-    rbData.r = &this->r(idx);
-
-    return rbData;
+    return mat(Eigen::all, Eigen::seq(0, this->nextIdx - 1));
 }
 
 
@@ -107,8 +70,8 @@ Rigidbody Simulator2d::addObject(double m, double r, const Eigen::Vector2d& p0, 
 
 void Simulator2d::delObject(Rigidbody id) {
     // Check object exists
-    if (id < 0 || id >= this->maxObjects || this->id2idx[id] == RIGIDBODY_INDEX_NULL) {
-        throw std::out_of_range("ERROR: Cannot delete entity: out of range.");
+    if (!this->rb_exists(id)) {
+        throw std::out_of_range("ERROR: Rigidbody id not valid.");
     }
 
     // Get deleted object's idx
@@ -128,7 +91,7 @@ void Simulator2d::delObject(Rigidbody id) {
     // Assign: idx to topID, topID to idx, null to id, null to topIdx
     this->id2idx[topID] = idx;
     this->idx2id[idx] = topID;
-    this->id2idx[id] = RIGIDBODY_INDEX_NULL;
+    this->id2idx[id] = RIGIDBODY_IDX_NULL;
     this->idx2id[topIdx] = RIGIDBODY_ID_NULL;
 
     // Push id to used available IDs
@@ -136,4 +99,39 @@ void Simulator2d::delObject(Rigidbody id) {
 
     // Decrement nextIdx
     this->nextIdx--;
+}
+
+
+bool Simulator2d::rb_exists(Rigidbody id) {
+    if (id < 0 || id >= this->maxObjects || this->id2idx[id] == RIGIDBODY_IDX_NULL) {
+        // ID is out of range or does not point to existing object
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_pos(Rigidbody id) {
+    return this->pos(Eigen::all, this->id2idx[id]);
+}
+
+
+Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_v(Rigidbody id) {
+    return this->v(Eigen::all, this->id2idx[id]);
+}
+
+
+Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_a(Rigidbody id) {
+    return this->a(Eigen::all, this->id2idx[id]);
+}
+
+
+double Simulator2d::rb_m(Rigidbody id) {
+    return this->m(this->id2idx[id]);
+}
+
+
+double Simulator2d::rb_r(Rigidbody id) {
+    return this->r(this->id2idx[id]);
 }

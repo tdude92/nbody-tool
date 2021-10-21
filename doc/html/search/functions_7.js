@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updateaccelerations_0',['updateAccelerations',['../class_simulator2d.html#a000c011462d6c6d4e21fc02e24476a52',1,'Simulator2d']]]
+  ['_7esimulator2d_0',['~Simulator2d',['../class_simulator2d.html#adec92d298e0e0611d2f691d536a5fafc',1,'Simulator2d']]]
 ];

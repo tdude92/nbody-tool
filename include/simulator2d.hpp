@@ -16,8 +16,6 @@
  * Step simulation using step().
  */
 class Simulator2d {
-    friend struct RigidbodyData;
-
     private:
         const double timeStep;               //!< dt value used in integrators.
         const Rigidbody maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
@@ -39,19 +37,13 @@ class Simulator2d {
         std::queue<Rigidbody> availableUsedIDs; //!< Stores IDs of destroyed objects for reallocation
        
         /*! Returns slice of array structure component with only active objects. */
-        Eigen::Map<Eigen::Matrix<double, 1, Eigen::Dynamic>> active(Eigen::Matrix<double, 1, Eigen::Dynamic>& mat);
-        
-        /*! Returns slice of array structure component with only active objects. */
-        Eigen::Map<Eigen::Matrix<double, 2, Eigen::Dynamic>> active(Eigen::Matrix<double, 2, Eigen::Dynamic>& mat);
+        Eigen::Ref<Eigen::Matrix2Xd> active(Eigen::Ref<Eigen::Matrix2Xd> mat); // TODO test
     public:
         /*! Constructs a Simulator2d object. */
         Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator);
         
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d();
-
-        /*! Returns a RigidBodyData struct containing pointers to the data of a specific object. */
-        RigidbodyData getObject(Rigidbody id); // TODO
 
         /*! Adds an object to the simulation. Can be done during the simulation if the #maxObjects is not met. */
         Rigidbody addObject(double m, double r, const Eigen::Vector2d& p0, const Eigen::Vector2d& v0);
@@ -61,6 +53,24 @@ class Simulator2d {
         
         /*! Objects combine into id1 and momentum is conserved. */
         void collideObject(Rigidbody id1, Rigidbody id2); // TODO collideObject remember to conserve momentum
+
+        /*! Returns if rigidbody with this id exists. */
+        bool rb_exists(Rigidbody id);
+
+        /*! Returns the position vector of a rigidbody. */
+        Eigen::Ref<const Eigen::Vector2d> rb_pos(Rigidbody id);
+
+        /*! Returns the velocity vector of a rigidbody. */
+        Eigen::Ref<const Eigen::Vector2d> rb_v(Rigidbody id);
+
+        /*! Returns the acceleration vector of a rigidbody. */
+        Eigen::Ref<const Eigen::Vector2d> rb_a(Rigidbody id);
+
+        /*! Returns the mass of a rigidbody. */
+        double rb_m(Rigidbody id);
+
+        /*! Returns the radius of a rigidbody. */
+        double rb_r(Rigidbody id);
 
         /*! Computes gravitational force between each object using the Barnes-Hut algorithm. #a is updated. */
         void updateAccelerations(); // TODO force update

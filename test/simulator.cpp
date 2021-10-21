@@ -13,24 +13,41 @@ TEST(Simulator2d, ConstructorTest) {
 TEST(Simulator2d, AddDelGetMethodTest) {
     Simulator2d sim(1, 1000, nullptr); // TODO nullptr with actual integrator
 
-    Rigidbody rb = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
-    RigidbodyData rbdata = sim.getObject(rb);
+    Rigidbody rb1 = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
+    EXPECT_EQ(sim.rb_exists(rb1), true);
+    EXPECT_EQ(sim.rb_m(rb1), 100);
+    EXPECT_EQ(sim.rb_r(rb1), 10);
+    EXPECT_EQ(sim.rb_pos(rb1)(0), 17);
+    EXPECT_EQ(sim.rb_pos(rb1)(1), 12);
+    EXPECT_EQ(sim.rb_v(rb1)(0), 2);
+    EXPECT_EQ(sim.rb_v(rb1)(1), -1);
+    EXPECT_EQ(sim.rb_a(rb1)(0), 0);
+    EXPECT_EQ(sim.rb_a(rb1)(1), 0);
+    sim.delObject(rb1);
+    EXPECT_EQ(sim.rb_exists(rb1), false);
 
-    EXPECT_EQ(rbdata.exists(), true);
-    EXPECT_EQ(*rbdata.m, 100);
-    EXPECT_EQ(*rbdata.r, 10);
-    EXPECT_EQ(*rbdata.pos[0], 17);
-    EXPECT_EQ(*rbdata.pos[1], 12);
-    EXPECT_EQ(*rbdata.v[0], 2);
-    EXPECT_EQ(*rbdata.v[1], -1);
-    EXPECT_EQ(*rbdata.a[0], 0);
-    EXPECT_EQ(*rbdata.a[1], 0);
-
-    sim.delObject(rb);
-
-    EXPECT_EQ(rbdata.exists(), false);
-
-    sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
-    sim.addObject(-100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
-    // TODO write tests for these
+    // Check pack-ifier system working
+    Rigidbody rb2 = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
+    Rigidbody rb3 = sim.addObject(-100, 7, Eigen::Vector2d(1, 2), Eigen::Vector2d(3, 4));
+    EXPECT_EQ(sim.rb_exists(rb2), true);
+    EXPECT_EQ(sim.rb_exists(rb3), true);
+    EXPECT_EQ(sim.rb_m(rb3), -100);
+    EXPECT_EQ(sim.rb_r(rb3), 7);
+    EXPECT_EQ(sim.rb_pos(rb3)(0), 1);
+    EXPECT_EQ(sim.rb_pos(rb3)(1), 2);
+    EXPECT_EQ(sim.rb_v(rb3)(0), 3);
+    EXPECT_EQ(sim.rb_v(rb3)(1), 4);
+    EXPECT_EQ(sim.rb_a(rb3)(0), 0);
+    EXPECT_EQ(sim.rb_a(rb3)(1), 0);
+    sim.delObject(rb2);
+    EXPECT_EQ(sim.rb_exists(rb2), false);
+    EXPECT_EQ(sim.rb_exists(rb3), true);
+    EXPECT_EQ(sim.rb_m(rb3), -100);
+    EXPECT_EQ(sim.rb_r(rb3), 7);
+    EXPECT_EQ(sim.rb_pos(rb3)(0), 1);
+    EXPECT_EQ(sim.rb_pos(rb3)(1), 2);
+    EXPECT_EQ(sim.rb_v(rb3)(0), 3);
+    EXPECT_EQ(sim.rb_v(rb3)(1), 4);
+    EXPECT_EQ(sim.rb_a(rb3)(0), 0);
+    EXPECT_EQ(sim.rb_a(rb3)(1), 0);
 }
