@@ -19,7 +19,8 @@ class Simulator2d {
     private:
         const double timeStep;               //!< dt value used in integrators.
         const Rigidbody maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
-        const Integrator* const integrator;  //!< Stores type of integrator used in this simulation.
+        
+        Integrator* const integrator;  //!< Stores type of integrator used in this simulation.
 
         // Structure of arrays for object properties
         Eigen::Matrix<double, 1, Eigen::Dynamic> m;     //!< Mass of each object packed into a 1 x N vector.
@@ -28,7 +29,7 @@ class Simulator2d {
         Eigen::Matrix<double, 2, Eigen::Dynamic> v;     //!< 2D velocity of each object packed into a 2 x N matrix.
         Eigen::Matrix<double, 2, Eigen::Dynamic> a;     //!< 2D acceleration of each object packed into a 2 x N matrix.
     
-        uint64_t iteration = 0;               //!< Current iteration of the simulation.
+        uint64_t iteration = 0;                 //!< Current iteration of the simulation.
         
         RigidbodyIdx nextIdx = 0;               //!< Index of next available column in the structure of arrays. Also serves as a counter of active objects.
         Rigidbody    nextID = 0;                //!< Next available ID to be assigned to a newly created Rigidbody.
@@ -76,7 +77,7 @@ class Simulator2d {
         void updateAccelerations(); // TODO force update
 
         /*! Steps simulation */
-        void step(); // TODO step function
+        void step();
 };
 
 #endif

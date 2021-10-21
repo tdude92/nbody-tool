@@ -135,3 +135,13 @@ double Simulator2d::rb_m(Rigidbody id) {
 double Simulator2d::rb_r(Rigidbody id) {
     return this->r(this->id2idx[id]);
 }
+
+
+void Simulator2d::step() {
+    this->integrator->integrate(
+        this->timeStep,
+        this->active(this->a),
+        this->active(this->v),
+        this->active(this->pos)
+    );
+}

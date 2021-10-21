@@ -10,55 +10,37 @@
  */
 class Integrator {
     public:
-        // NOTE do these need to take map types?
         virtual void integrate(double dt,
-                               const Eigen::Ref<const Eigen::Matrix2Xd>& a,
-                               Eigen::Ref<Eigen::Matrix2Xd> v,
-                               Eigen::Ref<Eigen::Matrix2Xd> x) = 0;
-        
-        virtual void integrate(double dt,
-                               const Eigen::Ref<const Eigen::Matrix3Xd>& a,
-                               Eigen::Ref<Eigen::Matrix3Xd> v,
-                               Eigen::Ref<Eigen::Matrix3Xd> x) = 0;
+                               const Eigen::Ref<const Eigen::MatrixXd>& a,
+                               Eigen::Ref<Eigen::MatrixXd> v,
+                               Eigen::Ref<Eigen::MatrixXd> x) = 0;
 };
 
 
 class EulerIntegrator: public Integrator {
     public:
         void integrate(double dt,
-                       const Eigen::Ref<const Eigen::Matrix2Xd>& a,
-                       Eigen::Ref<Eigen::Matrix2Xd> v,
-                       Eigen::Ref<Eigen::Matrix2Xd> x); //TODO euler 2d
-        void integrate(double dt,
-                       const Eigen::Ref<const Eigen::Matrix3Xd>& a,
-                       Eigen::Ref<Eigen::Matrix3Xd> v,
-                       Eigen::Ref<Eigen::Matrix3Xd> x); // TODO euler 3d
+                       const Eigen::Ref<const Eigen::MatrixXd>& a,
+                       Eigen::Ref<Eigen::MatrixXd> v,
+                       Eigen::Ref<Eigen::MatrixXd> x); //TODO euler
 };
 
 
 class VerletIntegrator: public Integrator {
     public:
         void integrate(double dt,
-                             const Eigen::Ref<const Eigen::Matrix2Xd>& a,
-                             Eigen::Ref<Eigen::Matrix2Xd> v,
-                             Eigen::Ref<Eigen::Matrix2Xd> x); // TODO verlet 2d
-        void integrate(double dt,
-                             const Eigen::Ref<const Eigen::Matrix3Xd>& a,
-                             Eigen::Ref<Eigen::Matrix3Xd> v,
-                             Eigen::Ref<Eigen::Matrix3Xd> x); // TODO verlet 3d
+                       const Eigen::Ref<const Eigen::MatrixXd>& a,
+                       Eigen::Ref<Eigen::MatrixXd> v,
+                       Eigen::Ref<Eigen::MatrixXd> x); // TODO verlet
 };
 
 
 class RungeKuttaIntegrator: public Integrator {
     public:
         void integrate(double dt,
-                                 const Eigen::Ref<const Eigen::Matrix2Xd>& a,
-                                 Eigen::Ref<Eigen::Matrix2Xd> v,
-                                 Eigen::Ref<Eigen::Matrix2Xd> x); // TODO runge kutta 2d
-        void integrate(double dt,
-                                 const Eigen::Ref<const Eigen::Matrix3Xd>& a,
-                                 Eigen::Ref<Eigen::Matrix3Xd> v,
-                                 Eigen::Ref<Eigen::Matrix3Xd> x); // TODO runge kutta 3d
+                       const Eigen::Ref<const Eigen::MatrixXd>& a,
+                       Eigen::Ref<Eigen::MatrixXd> v,
+                       Eigen::Ref<Eigen::MatrixXd> x); // TODO runge kutta
 };
 
 #endif
