@@ -15,18 +15,18 @@ On Windows, `MSVC` must be used instead of g++.
 In the project root,
 
 **Windows (MSVC)**:
-    ```
-    cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
-    cd build/
-    msbuild BUILD_ALL.vsproj
-    ```
+```
+cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
+cd build/
+msbuild BUILD_ALL.vsproj
+```
 
 **Linux**:
-    ```
-    cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
-    cd build/
-    make all
-    ```
+```
+cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
+cd build/
+make all
+```
 To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
 Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to use CUDA if available.\
 The resulting static lib `libnbodytool.a` can be found in `build/src/`\
