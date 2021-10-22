@@ -28,7 +28,7 @@ cd build/
 make all
 ```
 To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
-Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to use CUDA if available.\
+Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to compile for CUDA acceleration.\
 The resulting static lib `libnbodytool.a` can be found in `build/src/`\
 `nbodytool_test` can be found in `build/test` if compiled.
 
