@@ -7,6 +7,7 @@
 
 #include <Eigen>
 #include "integrator.hpp"
+#include "force_computer.hpp"
 #include "struct/rigidbody.hpp"
 #include "struct/quadtree.hpp"
 
@@ -17,10 +18,11 @@
  */
 class Simulator2d {
     private:
-        const double timeStep;               //!< dt value used in integrators.
-        const Rigidbody maxObjects;          //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
-        
-        Integrator* const integrator;  //!< Stores type of integrator used in this simulation.
+        const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
+        Integrator* const integrator;       //!< Integrator used in this simulation.
+        ForceComputer* const forceComputer; //!< ForceComputer use in this simulation.
+
+        double timeStep; //!< dt value used in integrators.
 
         // Structure of arrays for object properties
         Eigen::Matrix<double, 1, Eigen::Dynamic> m;     //!< Mass of each object packed into a 1 x N vector.
@@ -38,10 +40,10 @@ class Simulator2d {
         std::queue<Rigidbody> availableUsedIDs; //!< Stores IDs of destroyed objects for reallocation
        
         /*! Returns slice of array structure component with only active objects. */
-        Eigen::Ref<Eigen::Matrix2Xd> active(Eigen::Ref<Eigen::Matrix2Xd> mat); // TODO test
+        Eigen::Ref<Eigen::MatrixXd> active(Eigen::Ref<Eigen::MatrixXd> mat); // TODO test
     public:
         /*! Constructs a Simulator2d object. */
-        Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator);
+        Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer);
         
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d();
@@ -73,8 +75,8 @@ class Simulator2d {
         /*! Returns the radius of a rigidbody. */
         double rb_r(Rigidbody id);
 
-        /*! Computes gravitational force between each object using the Barnes-Hut algorithm. #a is updated. */
-        void updateAccelerations(); // TODO force update
+        /*! Computes force between each object using #forceComputer. #a is updated. */
+        void computeForces();
 
         /*! Steps simulation */
         void step();

@@ -18,7 +18,7 @@ In the project root,
 ```
 cmake -S . -B build/ -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
 cd build/
-msbuild BUILD_ALL.vsproj
+msbuild ALL_BUILD.vcxproj
 ```
 
 **Linux**:
@@ -39,5 +39,3 @@ cd build/
 mingw32-make all
 ```
 CUDA cannot be used on Windows without the MSVC compiler (so MinGW can only compile the CPU version of this lib).
-
-TODO: is the MSVC build file called BUILD_ALL.vsproj?

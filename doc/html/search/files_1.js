@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quadtree_2ehpp_0',['quadtree.hpp',['../quadtree_8hpp.html',1,'']]]
+  ['integrator_2ehpp_0',['Integrator.hpp',['../_integrator_8hpp.html',1,'']]]
 ];

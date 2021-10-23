@@ -90,24 +90,23 @@ $(document).ready(function(){initNavTree('class_integrator.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a>&gt;</code></p>
 
 <p>Inherited by <a class="el" href="class_euler_integrator.html">EulerIntegrator</a>, <a class="el" href="class_runge_kutta_integrator.html">RungeKuttaIntegrator</a>, and <a class="el" href="class_verlet_integrator.html">VerletIntegrator</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a13bf999303952d18311bc5f1b1bdf67c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_integrator.html#a13bf999303952d18311bc5f1b1bdf67c">integrate</a> (double dt, const Eigen::Ref&lt; const Eigen::Matrix2Xd &gt; &amp;a, Eigen::Ref&lt; Eigen::Matrix2Xd &gt; v, Eigen::Ref&lt; Eigen::Matrix2Xd &gt; x)=0</td></tr>
-<tr class="separator:a13bf999303952d18311bc5f1b1bdf67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b09bee20b1cb7a39b54103631c60d9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_integrator.html#a61b09bee20b1cb7a39b54103631c60d9">integrate</a> (double dt, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;a, Eigen::Ref&lt; Eigen::Matrix3Xd &gt; v, Eigen::Ref&lt; Eigen::Matrix3Xd &gt; x)=0</td></tr>
-<tr class="separator:a61b09bee20b1cb7a39b54103631c60d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54090adda1b9d7abad104ded9fd436bf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_integrator.html#a54090adda1b9d7abad104ded9fd436bf">integrate</a> (double dt, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;a, Eigen::Ref&lt; Eigen::MatrixXd &gt; v, Eigen::Ref&lt; Eigen::MatrixXd &gt; x)=0</td></tr>
+<tr class="memdesc:a54090adda1b9d7abad104ded9fd436bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes velocities and positions from accelerations and time step.  <a href="class_integrator.html#a54090adda1b9d7abad104ded9fd436bf">More...</a><br /></td></tr>
+<tr class="separator:a54090adda1b9d7abad104ded9fd436bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Abstract function object for integrators </p>
+<div class="textblock"><p >Abstract function object for integrators. Integrators are functional interfaces that update the position and velocity matrices using an acceleration matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="integrator_8hpp_source.html#l00011">11</a> of file <a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_integrator_8hpp_source.html#l00011">11</a> of file <a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a13bf999303952d18311bc5f1b1bdf67c" name="a13bf999303952d18311bc5f1b1bdf67c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13bf999303952d18311bc5f1b1bdf67c">&#9670;&nbsp;</a></span>integrate() <span class="overload">[1/2]</span></h2>
+<a id="a54090adda1b9d7abad104ded9fd436bf" name="a54090adda1b9d7abad104ded9fd436bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54090adda1b9d7abad104ded9fd436bf">&#9670;&nbsp;</a></span>integrate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,19 +123,19 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::Matrix2Xd &gt; &amp;&#160;</td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix2Xd &gt;&#160;</td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;&#160;</td>
           <td class="paramname"><em>v</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix2Xd &gt;&#160;</td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;&#160;</td>
           <td class="paramname"><em>x</em>&#160;</td>
         </tr>
         <tr>
@@ -152,62 +151,23 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_euler_integrator.html#a47bfec47f4b72952c5e54fc186119f6a">EulerIntegrator</a>, <a class="el" href="class_verlet_integrator.html#ab651f579a21628e832f4d431413a51e7">VerletIntegrator</a>, and <a class="el" href="class_runge_kutta_integrator.html#a7d1d81c0b752cffce56fb7a968c3f4fb">RungeKuttaIntegrator</a>.</p>
+<p>Computes velocities and positions from accelerations and time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step </td></tr>
+    <tr><td class="paramname">a</td><td>Acceleration matrix </td></tr>
+    <tr><td class="paramname">v</td><td>Velocity matrix </td></tr>
+    <tr><td class="paramname">x</td><td>Position matrix </td></tr>
+  </table>
+  </dd>
+</dl>
 
-</div>
-</div>
-<a id="a61b09bee20b1cb7a39b54103631c60d9" name="a61b09bee20b1cb7a39b54103631c60d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61b09bee20b1cb7a39b54103631c60d9">&#9670;&nbsp;</a></span>integrate() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Integrator::integrate </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>dt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix3Xd &gt;&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix3Xd &gt;&#160;</td>
-          <td class="paramname"><em>x</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_euler_integrator.html#aea384167cc52f10afff21c6d208209b5">EulerIntegrator</a>, <a class="el" href="class_verlet_integrator.html#abfadb6a4637e2748b4978afce089a6b4">VerletIntegrator</a>, and <a class="el" href="class_runge_kutta_integrator.html#afe4c8be84463bfb62ab6dc86c6d981c8">RungeKuttaIntegrator</a>.</p>
+<p>Implemented in <a class="el" href="class_euler_integrator.html#afbf0faafe9ef628e25e62d66d68344a6">EulerIntegrator</a>, <a class="el" href="class_verlet_integrator.html#abea496a2bd35b195b195e748d25bf1fd">VerletIntegrator</a>, and <a class="el" href="class_runge_kutta_integrator.html#a20d4c5761ffc8979699bb6fa1357978f">RungeKuttaIntegrator</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="integrator_8hpp_source.html">integrator.hpp</a></li>
+<li>include/<a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

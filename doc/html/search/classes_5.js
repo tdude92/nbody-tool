@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verletintegrator_0',['VerletIntegrator',['../class_verlet_integrator.html',1,'']]]
+  ['rungekuttaintegrator_0',['RungeKuttaIntegrator',['../class_runge_kutta_integrator.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['quadtree_0',['Quadtree',['../class_quadtree.html',1,'']]],
-  ['quadtreenode_1',['QuadtreeNode',['../struct_quadtree_node.html',1,'']]]
+  ['gravitational_5fdirect_0',['Gravitational_Direct',['../class_gravitational___direct.html',1,'']]]
 ];

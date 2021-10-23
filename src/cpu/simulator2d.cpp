@@ -7,10 +7,11 @@
 #include "integrator.hpp"
 #include "struct/rigidbody.hpp"
 
-Simulator2d::Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator)
+Simulator2d::Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer)
 : timeStep(timeStep)
 , maxObjects(maxObjects)
 , integrator(integrator)
+, forceComputer(forceComputer)
 , m(1, maxObjects)
 , r(1, maxObjects)
 , pos(2, maxObjects)
@@ -24,10 +25,11 @@ Simulator2d::Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integ
 Simulator2d::~Simulator2d() {
     // Deallocate heap variables
     delete this->integrator;
+    delete this->forceComputer;
 }
 
 
-Eigen::Ref<Eigen::Matrix2Xd> Simulator2d::active(Eigen::Ref<Eigen::Matrix2Xd> mat) {
+Eigen::Ref<Eigen::MatrixXd> Simulator2d::active(Eigen::Ref<Eigen::MatrixXd> mat) {
     // Return map to slice (1, this->nextIdx). Works because SoA is densely packed.
     return mat(Eigen::all, Eigen::seq(0, this->nextIdx - 1));
 }
@@ -113,17 +115,17 @@ bool Simulator2d::rb_exists(Rigidbody id) {
 
 
 Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_pos(Rigidbody id) {
-    return this->pos(Eigen::all, this->id2idx[id]);
+    return this->pos.col(this->id2idx[id]);
 }
 
 
 Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_v(Rigidbody id) {
-    return this->v(Eigen::all, this->id2idx[id]);
+    return this->v.col(this->id2idx[id]);
 }
 
 
 Eigen::Ref<const Eigen::Vector2d> Simulator2d::rb_a(Rigidbody id) {
-    return this->a(Eigen::all, this->id2idx[id]);
+    return this->a.col(this->id2idx[id]);
 }
 
 
@@ -134,6 +136,15 @@ double Simulator2d::rb_m(Rigidbody id) {
 
 double Simulator2d::rb_r(Rigidbody id) {
     return this->r(this->id2idx[id]);
+}
+
+
+void Simulator2d::computeForces() {
+    this->forceComputer->computeForces(
+        this->active(this->a),
+        this->active(this->pos),
+        this->active(this->m)
+    );
 }
 
 

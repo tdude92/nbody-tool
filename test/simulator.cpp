@@ -2,16 +2,16 @@
 
 #include "simulator2d.hpp"
 #include "integrator.hpp"
+#include "force_computer.hpp"
 
 
-#include <iostream>
 // Simulator2d
 TEST(Simulator2d, ConstructorTest) {
-    Simulator2d sim(1, 1000, new EulerIntegrator());
+    Simulator2d sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
 }
 
 TEST(Simulator2d, AddDelGetMethodTest) {
-    Simulator2d sim(1, 1000, new EulerIntegrator());
+    Simulator2d sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
 
     Rigidbody rb1 = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
     EXPECT_EQ(sim.rb_exists(rb1), true);
@@ -50,15 +50,4 @@ TEST(Simulator2d, AddDelGetMethodTest) {
     EXPECT_EQ(sim.rb_v(rb3)(1), 4);
     EXPECT_EQ(sim.rb_a(rb3)(0), 0);
     EXPECT_EQ(sim.rb_a(rb3)(1), 0);
-}
-
-TEST(Simulator2d, EulerIntegratorTest) {
-    Simulator2d sim(0.1, 1000, new EulerIntegrator());
-    Rigidbody rb = sim.addObject(10, 10, Eigen::Vector2d(10, 20), Eigen::Vector2d(-1, 2));
-
-    sim.step();
-    EXPECT_EQ(sim.rb_v(rb)(0), -1);
-    EXPECT_EQ(sim.rb_v(rb)(1), 2);
-    EXPECT_EQ(sim.rb_pos(rb)(0), 9.9);
-    EXPECT_EQ(sim.rb_pos(rb)(1), 20.2);
 }

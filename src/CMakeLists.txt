@@ -9,6 +9,7 @@ else()
     set(
         SOURCES
         cpu/integrator.cpp
+        cpu/force_computer.cpp
         cpu/simulator2d.cpp
     )
 endif()

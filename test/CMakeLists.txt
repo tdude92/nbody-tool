@@ -2,7 +2,6 @@ set(BINARY ${CMAKE_PROJECT_NAME}_test)
 set(
     SOURCES
     main.cpp
-    octree.cpp
     simulator.cpp
 )
 
