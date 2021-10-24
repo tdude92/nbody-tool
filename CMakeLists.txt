@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.15.0)
 project(nbodytool LANGUAGES CXX)
 
 option(BUILD_TYPE "Build Type" Release)
-option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_DEMOS "Build Visual Demos" OFF)
+option(BUILD_TESTS "Build Tests" OFF)
 option(USE_CUDA "Use CUDA Acceleration" OFF)
 
 if(USE_CUDA)
@@ -35,12 +36,19 @@ endif()
 include_directories(
     include/
     deps/
+    deps/googletest-1.11.0/googletest/include/
     deps/eigen-3.4.0/Eigen/
+    deps/SFML-2.5.1/include/
 )
 
 add_subdirectory(src/)
 
 if(BUILD_TESTS)
-    add_subdirectory(deps/googletest/)
+    add_subdirectory(deps/googletest-1.11.0/)
     add_subdirectory(test/)
+endif()
+
+if(BUILD_DEMOS)
+    add_subdirectory(deps/SFML-2.5.1)
+    add_subdirectory(demo/)
 endif()
