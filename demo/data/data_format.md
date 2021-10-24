@@ -13,10 +13,11 @@ The data for a specific object is terminated by a newline character `\n`. For ea
 Example:
 ```
 (zeros_5.data)
+m r x y z vx vy vz\n
 
-0 0 0 0 0 0\n
-0 0 0 0 0 0\n
-0 0 0 0 0 0\n
-0 0 0 0 0 0\n
-0 0 0 0 0 0\n
+0 0 0 0 0 0 0 0\n
+0 0 0 0 0 0 0 0\n
+0 0 0 0 0 0 0 0\n
+0 0 0 0 0 0 0 0\n
+0 0 0 0 0 0 0 0\n
 ```
