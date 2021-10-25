@@ -16,7 +16,7 @@ foreach(DATA_FILE IN LISTS DATA_FILE_LIST_2D)
             string(TOLOWER ${FORCE_COMPUTER} FORCE_COMPUTER_STRING)
             set(DEMO_NAME "2d_${INTEGRATOR_STRING}_${FORCE_COMPUTER_STRING}_${DATA_FILE}")
             
-            add_executable(${DEMO_NAME} nbt_demo_2d.cpp)
+            add_executable(${DEMO_NAME} nbt_demo_2d.cpp ../deps/glad/glad.c)
             target_link_libraries(${DEMO_NAME} PUBLIC ${CMAKE_PROJECT_NAME} OpenGL::GL glfw)
             target_compile_definitions(${DEMO_NAME} PRIVATE DATA_FILE=${DATA_FILE} PRIVATE ${INTEGRATOR} PRIVATE ${FORCE_COMPUTER})
         endforeach()

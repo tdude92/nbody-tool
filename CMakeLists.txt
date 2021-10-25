@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15.0)
-project(nbodytool LANGUAGES CXX)
+project(nbodytool LANGUAGES CXX C)
 
 option(BUILD_TYPE "Build Type" Release)
 option(NBT_BUILD_DEMOS "Build Visual Demos" OFF)
