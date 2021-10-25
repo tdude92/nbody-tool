@@ -27,6 +27,7 @@ cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BU
 cd build/
 make all
 ```
+TODO: document installing SFML deps for linux
 To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
 Visual demos can be built by setting `BUILD_DEMOS=ON`\
 Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to compile for CUDA acceleration.\
@@ -41,3 +42,5 @@ cd build/
 mingw32-make all
 ```
 CUDA cannot be used on Windows without the MSVC compiler (so MinGW can only compile the CPU version of this lib).
+
+TODO: add list of external libs
