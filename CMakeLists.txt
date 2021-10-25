@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.15.0)
 project(nbodytool LANGUAGES CXX)
 
 option(BUILD_TYPE "Build Type" Release)
-option(BUILD_DEMOS "Build Visual Demos" OFF)
-option(BUILD_TESTS "Build Tests" OFF)
-option(USE_CUDA "Use CUDA Acceleration" OFF)
+option(NBT_BUILD_DEMOS "Build Visual Demos" OFF)
+option(NBT_BUILD_TESTS "Build Tests" OFF)
+option(NBT_USE_CUDA "Use CUDA Acceleration" OFF)
 
 if(USE_CUDA)
     enable_language(CUDA)
@@ -21,16 +21,23 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# GLFW flags
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
 # Compiler flags
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     # using GCC
     add_compile_options(-O3)
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # using Visual Studio C++
-    # Remove RTC1 flag and add O2
+    # TODO: Remove RTC1 flag and add Ox
     string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
     string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
-    add_compile_options(/O2)
+    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+    add_compile_options(/Ox)
 endif()
 
 include_directories(
@@ -38,17 +45,17 @@ include_directories(
     deps/
     deps/googletest-1.11.0/googletest/include/
     deps/eigen-3.4.0/Eigen/
-    deps/SFML-2.5.1/include/
+    deps/glfw-3.3.4/include/
 )
 
 add_subdirectory(src/)
 
-if(BUILD_TESTS)
+if(NBT_BUILD_TESTS)
     add_subdirectory(deps/googletest-1.11.0/)
     add_subdirectory(test/)
 endif()
 
-if(BUILD_DEMOS)
-    add_subdirectory(deps/SFML-2.5.1)
+if(NBT_BUILD_DEMOS)
+    add_subdirectory(deps/glfw-3.3.4/)
     add_subdirectory(demo/)
 endif()

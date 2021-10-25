@@ -16,14 +16,14 @@ In the project root,
 
 **Windows (MSVC)**:
 ```
-cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
+cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF -D BUILD_TYPE=Release
 cd build/
 msbuild ALL_BUILD.vcxproj
 ```
 
 **Linux**:
 ```
-cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release
+cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF -D BUILD_TYPE=Release
 cd build/
 make all
 ```
@@ -37,7 +37,7 @@ Demo executables can be found in `build/demo/`
 
 If using MinGW or MinGW64 on Windows, the process only slightly differs:
 ```
-cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D BUILD_TYPE=Release -G "MinGW Makefiles"
+cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D BUILD_TYPE=Release -G "MinGW Makefiles"
 cd build/
 mingw32-make all
 ```

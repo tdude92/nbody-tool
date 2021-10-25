@@ -36,7 +36,7 @@ else:
     SIM_TYPE = sys.argv[2]
 
 FILE_NAME  = "2d/" + SIM_TYPE + "_"
-FILE_NAME += number_compact_str(N_BODIES) + ".data"
+FILE_NAME += number_compact_str(N_BODIES)
 
 # Generate data based on distribution type
 if SIM_TYPE == "stars_uniform":
