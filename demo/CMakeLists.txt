@@ -1,15 +1,16 @@
 set(DATA_FILE_LIST_2D
     solarsystem_uniform_10
-    solarsystem_uniform_100
     stars_uniform_1k
     stars_uniform_10k
-    stars_uniform_100
 )
 set(INTEGRATOR_LIST     EULER)
 set(FORCE_COMPUTER_LIST GRAVITATIONAL_DIRECT)
 
+
 find_package(OpenGL REQUIRED)
 foreach(DATA_FILE IN LISTS DATA_FILE_LIST_2D)
+    configure_file(data/2d/${DATA_FILE} ${CMAKE_CURRENT_BINARY_DIR}/demo/data/2d)
+
     foreach(INTEGRATOR IN LISTS INTEGRATOR_LIST)
         foreach(FORCE_COMPUTER IN LISTS FORCE_COMPUTER_LIST)
             string(TOLOWER ${INTEGRATOR} INTEGRATOR_STRING)

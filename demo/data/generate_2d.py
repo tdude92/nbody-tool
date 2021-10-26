@@ -50,6 +50,7 @@ if SIM_TYPE == "stars_uniform":
     min_v = 0
     max_v = 5
     with open(FILE_NAME, "w") as wf:
+        wf.write(f"{9460730472580800.0} {1.98847e30} {31557600000.0}\n") # Unit row
         for _ in range(N_BODIES):
             m = [random.uniform(min_m, max_m)]
             r = [0] # Radius insignificant
@@ -69,6 +70,8 @@ elif SIM_TYPE == "solarsystem_uniform":
     min_v = 0
     max_v = 0.05
     with open(FILE_NAME, "w") as wf:
+        wf.write(f"{149597870700.0} {5.9722e24} {86400.0}\n") # Unit row
+
         # Central star (just using the sun's physical data)
         density = 7.9043e+11
         m = [333000]
