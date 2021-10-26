@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15.0)
 project(nbodytool LANGUAGES CXX C)
 
-option(BUILD_TYPE "Build Type" Release)
 option(NBT_BUILD_DEMOS "Build Visual Demos" OFF)
 option(NBT_BUILD_TESTS "Build Tests" OFF)
 option(NBT_USE_CUDA "Use CUDA Acceleration" OFF)
@@ -16,7 +15,7 @@ if(USE_CUDA)
     SET(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
 endif()
 
-set(CMAKE_BUILD_TYPE ${BUILD_TYPE})
+set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)

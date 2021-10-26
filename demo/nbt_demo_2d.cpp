@@ -85,7 +85,7 @@ int main() {
 
         sim.computeForces();
         sim.step();
-        std::cout << "step " << ++frame << std::endl;
+        std::cout << "\rstep " << ++frame;
 
         // Process events and swap buffers
         glfwPollEvents();

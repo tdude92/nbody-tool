@@ -1,3 +1,9 @@
+if (MSVC)
+    set(builddir ${CMAKE_BUILD_TYPE})
+else()
+    set(builddir "")
+endif()
+
 set(DATA_FILE_LIST_2D
     solarsystem_uniform_10
     stars_uniform_1k
@@ -9,7 +15,7 @@ set(FORCE_COMPUTER_LIST GRAVITATIONAL_DIRECT)
 
 find_package(OpenGL REQUIRED)
 foreach(DATA_FILE IN LISTS DATA_FILE_LIST_2D)
-    configure_file(data/2d/${DATA_FILE} ${CMAKE_CURRENT_BINARY_DIR}/demo/data/2d)
+    configure_file(data/2d/${DATA_FILE} ${CMAKE_CURRENT_BINARY_DIR}/${builddir}/data/2d/${DATA_FILE})
 
     foreach(INTEGRATOR IN LISTS INTEGRATOR_LIST)
         foreach(FORCE_COMPUTER IN LISTS FORCE_COMPUTER_LIST)
