@@ -18,7 +18,6 @@
  */
 class Simulator2d {
     private:
-        const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
         Integrator* const integrator;       //!< Integrator used in this simulation.
         ForceComputer* const forceComputer; //!< ForceComputer use in this simulation.
 
@@ -42,11 +41,18 @@ class Simulator2d {
         /*! Returns slice of array structure component with only active objects. */
         Eigen::Ref<Eigen::MatrixXd> active(Eigen::Ref<Eigen::MatrixXd> mat); // TODO test
     public:
+        const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
+
         /*! Constructs a Simulator2d object. */
         Simulator2d(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer);
         
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d();
+
+        // TODO energy
+        double totalKineticEnergy();
+        double totalPotentialEnergy();
+        double totalEnergy();
 
         /*! Returns number of active objects */
         Rigidbody nObjects();
