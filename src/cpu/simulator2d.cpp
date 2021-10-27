@@ -35,6 +35,11 @@ Eigen::Ref<Eigen::MatrixXd> Simulator2d::active(Eigen::Ref<Eigen::MatrixXd> mat)
 }
 
 
+Rigidbody Simulator2d::nObjects() {
+    return this->nextIdx;
+}
+
+
 Rigidbody Simulator2d::addObject(double m, double r, const Eigen::Vector2d& p0, const Eigen::Vector2d& v0) {
     // Update SoA and nextIdx
 
@@ -138,6 +143,26 @@ double Simulator2d::rb_r(Rigidbody id) {
     return this->r(this->id2idx[id]);
 }
 
+
+Eigen::Ref<const Eigen::MatrixXd> Simulator2d::activePos() {
+    return this->active(this->pos);
+}
+
+Eigen::Ref<const Eigen::MatrixXd> Simulator2d::activeV() {
+    return this->active(this->v);
+}
+
+Eigen::Ref<const Eigen::MatrixXd> Simulator2d::activeA() {
+    return this->active(this->a);
+}
+
+Eigen::Ref<const Eigen::MatrixXd> Simulator2d::activeM() {
+    return this->active(this->m);
+}
+
+Eigen::Ref<const Eigen::MatrixXd> Simulator2d::activeR() {
+    return this->active(this->r);
+}
 
 void Simulator2d::computeForces() {
     this->forceComputer->computeForces(

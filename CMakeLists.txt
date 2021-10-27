@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15.0)
-project(nbodytool LANGUAGES CXX C)
+project(nbodytool LANGUAGES CXX)
 
-option(NBT_BUILD_DEMOS "Build Visual Demos" OFF)
 option(NBT_BUILD_TESTS "Build Tests" OFF)
 option(NBT_USE_CUDA "Use CUDA Acceleration" OFF)
 
@@ -19,11 +18,6 @@ set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-# GLFW flags
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 # Compiler flags
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -44,7 +38,6 @@ include_directories(
     deps/
     deps/googletest-1.11.0/googletest/include/
     deps/eigen-3.4.0/Eigen/
-    deps/glfw-3.3.4/include/
 )
 
 add_subdirectory(src/)
@@ -52,9 +45,4 @@ add_subdirectory(src/)
 if(NBT_BUILD_TESTS)
     add_subdirectory(deps/googletest-1.11.0/)
     add_subdirectory(test/)
-endif()
-
-if(NBT_BUILD_DEMOS)
-    add_subdirectory(deps/glfw-3.3.4/)
-    add_subdirectory(demo/)
 endif()

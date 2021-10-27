@@ -48,6 +48,9 @@ class Simulator2d {
         /*! Destroys a Simulator2d object and deallocates all used memory. */
         ~Simulator2d();
 
+        /*! Returns number of active objects */
+        Rigidbody nObjects();
+
         /*! Adds an object to the simulation. Can be done during the simulation if the #maxObjects is not met. */
         Rigidbody addObject(double m, double r, const Eigen::Vector2d& p0, const Eigen::Vector2d& v0);
         
@@ -74,6 +77,21 @@ class Simulator2d {
 
         /*! Returns the radius of a rigidbody. */
         double rb_r(Rigidbody id);
+
+        /*! Returns Eigen::Matrix ref of object positions */
+        Eigen::Ref<const Eigen::MatrixXd> activePos();
+
+        /*! Returns Eigen::Matrix ref of object velocities */
+        Eigen::Ref<const Eigen::MatrixXd> activeV();
+
+        /*! Returns Eigen::Matrix ref of object accelerations */
+        Eigen::Ref<const Eigen::MatrixXd> activeA();
+
+        /*! Returns Eigen::Matrix ref of object masses */
+        Eigen::Ref<const Eigen::MatrixXd> activeM();
+
+        /*! Returns Eigen::Matrix ref of object radii */
+        Eigen::Ref<const Eigen::MatrixXd> activeR();
 
         /*! Computes force between each object using #forceComputer. #a is updated. */
         void computeForces();

@@ -16,28 +16,26 @@ In the project root,
 
 **Windows (MSVC)**:
 ```
-cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF -D BUILD_TYPE=Release
+cmake -S . -B build/ -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF
 cd build/
 msbuild ALL_BUILD.vcxproj
 ```
 
 **Linux**:
 ```
-cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF -D BUILD_TYPE=Release
+cmake -S . -B build/ -D NBT_BUILD_TESTS=OFF -D NBT_USE_CUDA=OFF
 cd build/
 make all
 ```
-TODO: document installing SFML deps for linux
+
 To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
-Visual demos can be built by setting `BUILD_DEMOS=ON`\
 Similarly, change `USE_CUDA=OFF` to `USE_CUDA=ON` to compile for CUDA acceleration.\
 The resulting static lib `libnbodytool.a` can be found in `build/src/`\
-`nbodytool_test` can be found in `build/test/` if compiled.\
-Demo executables can be found in `build/demo/`
+`nbodytool_test` and `benchmark` executables can be found in `build/test/` if compiled.\
 
 If using MinGW or MinGW64 on Windows, the process only slightly differs:
 ```
-cmake -S . -B build/ -D NBT_BUILD_DEMOS=OFF -D NBT_BUILD_TESTS=OFF -D BUILD_TYPE=Release -G "MinGW Makefiles"
+cmake -S . -B build/ -D NBT_BUILD_TESTS=OFF -G "MinGW Makefiles"
 cd build/
 mingw32-make all
 ```

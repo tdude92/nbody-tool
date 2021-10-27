@@ -8,11 +8,10 @@
 
 Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m, unit_t t)
 : softening(softening)
-, G(0.0000000000667430/l/l/l*m*t*t) {}
+, G(6.67430e-11/l/l/l*m*t*t) {}
 
 
 /* computeForces() */
-
 void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::MatrixXd> a,
                                          const Eigen::Ref<const Eigen::MatrixXd>& x,
                                          const Eigen::Ref<const Eigen::VectorXd>& m) {
