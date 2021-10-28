@@ -12,9 +12,9 @@ Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m,
 
 
 /* computeForces() */
-void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::MatrixXd> a,
-                                         const Eigen::Ref<const Eigen::MatrixXd>& x,
-                                         const Eigen::Ref<const Eigen::VectorXd>& m) {
+void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                         const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                         const Eigen::Ref<const Eigen::RowVectorXd>& m) {
     // Iterate through each pair of objects and compute gravitational force
     uint64_t n = x.cols();
     for (uint64_t i = 0; i < n; ++i) {

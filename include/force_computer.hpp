@@ -18,9 +18,9 @@ class ForceComputer {
          * @param x Position matrix
          * @param m Mass vector
          */
-        virtual void computeForces(Eigen::Ref<Eigen::MatrixXd> a,
-                                   const Eigen::Ref<const Eigen::MatrixXd>& x,
-                                   const Eigen::Ref<const Eigen::VectorXd>& m) = 0;
+        virtual void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                   const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                   const Eigen::Ref<const Eigen::RowVectorXd>& m) = 0;
 };
 
 
@@ -42,9 +42,9 @@ class Gravitational_Direct: public ForceComputer {
          * @param t Unit of time
          */
         Gravitational_Direct(double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
-        void computeForces(Eigen::Ref<Eigen::MatrixXd> a,
-                           const Eigen::Ref<const Eigen::MatrixXd>& x,
-                           const Eigen::Ref<const Eigen::VectorXd>& m);
+        void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                           const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                           const Eigen::Ref<const Eigen::RowVectorXd>& m);
 };
 
 

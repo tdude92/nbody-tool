@@ -5,13 +5,13 @@
 #include <Eigen>
 #include "nbodytool.hpp"
 
-void benchmark(Simulator2d& sim, int iters, const std::string& name) {
+void benchmark(Simulator& sim, int iters, const std::string& name) {
     std::cout << "Benchmarking " << name                  << std::endl
               << "--------------------------------------" << std::endl
               << "Average over " << iters << " iterations."       << std::endl;
 
     for (int i = 0; i < sim.maxObjects; ++i) {
-        sim.addObject(rand() % 100, 0.001, Eigen::Vector2d::Random()*1000, Eigen::Vector2d::Random()*1);
+        sim.addObject(rand() % 100, 0.001, Eigen::Vector3d::Random()*1000, Eigen::Vector3d::Random()*1);
     }
 
     std::chrono::time_point<std::chrono::steady_clock> start, end;
@@ -33,10 +33,10 @@ void benchmark(Simulator2d& sim, int iters, const std::string& name) {
 
 int main() {
     // Simulator2d 1k Euler Gravitational_Direct
-    Simulator2d sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
-                                  new Gravitational_Direct(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
+    Simulator sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
+                                new Gravitational_Direct(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
-    benchmark(sim2d_euler_gd_1k, 5, "Simulator2d Euler Gravitational_Direct 1k");
+    benchmark(sim2d_euler_gd_1k, 5, "Simulator Euler Gravitational_Direct 1k");
 
     return 0;
 }

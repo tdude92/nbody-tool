@@ -1,19 +1,19 @@
 #include <gtest/gtest.h>
 
-#include "simulator2d.hpp"
+#include "simulator.hpp"
 #include "integrator.hpp"
 #include "force_computer.hpp"
 
 
 // Simulator2d
-TEST(Simulator2d, ConstructorTest) {
-    Simulator2d sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
+TEST(Simulator, ConstructorTest) {
+    Simulator sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
 }
 
-TEST(Simulator2d, AddDelGetMethodTest) {
-    Simulator2d sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
+TEST(Simulator, AddDelGetMethodTest) {
+    Simulator sim(1, 1000, new EulerIntegrator(), new Gravitational_Direct(0.1));
 
-    Rigidbody rb1 = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
+    Rigidbody rb1 = sim.addObject(100, 10, Eigen::Vector3d(17, 12, 0), Eigen::Vector3d(2, -1, 0));
     EXPECT_EQ(sim.rb_exists(rb1), true);
     EXPECT_EQ(sim.rb_m(rb1), 100);
     EXPECT_EQ(sim.rb_r(rb1), 10);
@@ -27,8 +27,8 @@ TEST(Simulator2d, AddDelGetMethodTest) {
     EXPECT_EQ(sim.rb_exists(rb1), false);
 
     // Check pack-ifier system working
-    Rigidbody rb2 = sim.addObject(100, 10, Eigen::Vector2d(17, 12), Eigen::Vector2d(2, -1));
-    Rigidbody rb3 = sim.addObject(-100, 7, Eigen::Vector2d(1, 2), Eigen::Vector2d(3, 4));
+    Rigidbody rb2 = sim.addObject(100, 10, Eigen::Vector3d(17, 12, 0), Eigen::Vector3d(2, -1, 0));
+    Rigidbody rb3 = sim.addObject(-100, 7, Eigen::Vector3d(1, 2, 0), Eigen::Vector3d(3, 4, 0));
     EXPECT_EQ(sim.rb_exists(rb2), true);
     EXPECT_EQ(sim.rb_exists(rb3), true);
     EXPECT_EQ(sim.rb_m(rb3), -100);
