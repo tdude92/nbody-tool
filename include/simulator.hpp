@@ -8,8 +8,8 @@
 #include <Eigen>
 #include "integrator.hpp"
 #include "force_computer.hpp"
-#include "struct/rigidbody.hpp"
-#include "struct/octree.hpp"
+#include "rigidbody.hpp"
+#include "octree.hpp"
 
 /**
  * Simulator object to control simulations.

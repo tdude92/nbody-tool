@@ -5,7 +5,7 @@
 #include <limits>
 #include <Eigen>
 #include "integrator.hpp"
-#include "struct/rigidbody.hpp"
+#include "rigidbody.hpp"
 
 Simulator::Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer)
 : timeStep(timeStep)

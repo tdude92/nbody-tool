@@ -1,6 +1,6 @@
 #include "units.hpp"
-#include "struct/rigidbody.hpp"
-#include "struct/octree.hpp"
+#include "rigidbody.hpp"
+#include "octree.hpp"
 #include "force_computer.hpp"
 #include "integrator.hpp"
 #include "simulator.hpp"
