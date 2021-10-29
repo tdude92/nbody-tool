@@ -27,7 +27,14 @@ OctreeNode::OctreeNode(double xMin, double xMax, double yMin, double yMax, doubl
 
 
 OctreeNode::~OctreeNode() {
-    delete[] this->children;
+    // Iterate through each child and deallocate
+    for (int z = 0; z < 2; ++z) {
+        for (int y = 0; y < 2; ++y) {
+            for (int x = 0; x < 2; ++x) {
+                delete this->children[z][y][x];
+            }
+        }
+    }
 }
 
 

@@ -3,6 +3,7 @@ set(
     SOURCES
     main.cpp
     simulator.cpp
+    octree.cpp
 )
 
 add_executable(${BINARY} ${SOURCES})

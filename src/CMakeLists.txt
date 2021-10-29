@@ -8,8 +8,9 @@ if(USE_CUDA)
 else()
     set(
         SOURCES
-        cpu/integrator.cpp
         cpu/force_computer.cpp
+        cpu/integrator.cpp
+        cpu/octree.cpp
         cpu/simulator.cpp
     )
 endif()
