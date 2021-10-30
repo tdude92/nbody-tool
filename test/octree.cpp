@@ -74,3 +74,26 @@ TEST_F(OctreeTest, AddObjectTest) {
     EXPECT_EQ(empty->isEmpty, true);
     EXPECT_EQ(empty->isExternal, true);
 }
+
+TEST_F(OctreeTest, PruneTest) {
+    Eigen::RowVectorXd m1 {{1, 2, 1}};
+    Eigen::Matrix3Xd pos1 {
+        {0.1, 0.4, 0.1},
+        {0.4, 0.4, 0.1},
+        {0.0, 0.0, 0.0}
+    };
+
+    root1->addObject(m1(0), pos1.col(0));
+    root1->addObject(m1(1), pos1.col(1));
+    root1->addObject(m1(2), pos1.col(2));
+
+    root1->prune();
+
+    for (int z = 0; z < 2; ++z) {
+        for (int y = 0; y < 2; ++y) {
+            for (int x = 0; x < 2; ++x) {
+                EXPECT_EQ(root1->children[y][x][z], nullptr);
+            }
+        }
+    }
+}

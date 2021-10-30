@@ -147,3 +147,16 @@ void OctreeNode::addObject(double m, const Eigen::Ref<const Eigen::Vector3d> pos
         this->children[zIdx][yIdx][xIdx]->addObject(m, pos);
     }
 }
+
+
+void OctreeNode::prune() {
+    // Iterate through each child, deallocate and replace with nullptr
+    for (int z = 0; z < 2; ++z) {
+        for (int y = 0; y < 2; ++y) {
+            for (int x = 0; x < 2; ++x) {
+                delete this->children[z][y][x];
+                this->children[z][y][x] = nullptr;
+            }
+        }
+    }
+}

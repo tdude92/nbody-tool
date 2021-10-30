@@ -2,6 +2,7 @@
 #define NBT_FORCES_HPP
 
 #include <Eigen>
+#include "octree.hpp"
 #include "units.hpp"
 
 /**
@@ -42,6 +43,30 @@ class Gravitational_Direct: public ForceComputer {
          * @param t Unit of time
          */
         Gravitational_Direct(double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
+        void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                           const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                           const Eigen::Ref<const Eigen::RowVectorXd>& m);
+};
+
+
+/**
+ * A single-threaded Barnes-Hut force computer
+ */
+class Gravitational_BarnesHut: public ForceComputer {
+    public:
+        OctreeNode* root;       //!< Root node of the Barnes-Hut tree.
+        const double softening; //!< Softening parameter for non-colliding n-body sim.
+        const double G;         //!< Gravitational constant. Changes depending on units.
+        
+        /**
+         * @brief Construct a new Gravitational_Direct object. Performs unit conversions on #G.
+         * 
+         * @param softening Softening parameter
+         * @param l Unit of length
+         * @param m Unit of mass
+         * @param t Unit of time
+         */
+        Gravitational_BarnesHut(double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
         void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
                            const Eigen::Ref<const Eigen::RowVectorXd>& m);

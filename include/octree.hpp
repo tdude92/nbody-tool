@@ -2,7 +2,6 @@
 #define NBT_OCTREE_HPP
 
 #include <Eigen>
-#include "simulator.hpp"
 #include "rigidbody.hpp"
 
 /**
@@ -25,6 +24,7 @@ struct OctreeNode { // TODO document OctreeNode
     ~OctreeNode();
 
     void addObject(double m, const Eigen::Ref<const Eigen::Vector3d> pos);
+    void prune(); // Deletes children
 };
 
 #endif

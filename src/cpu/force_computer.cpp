@@ -11,6 +11,12 @@ Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m,
 , G(6.67430e-11/l/l/l*m*t*t) {}
 
 
+Gravitational_BarnesHut::Gravitational_BarnesHut(double softening, unit_t l, unit_t m, unit_t t)
+: root(nullptr)
+, softening(softening)
+, G(6.67430e-11/l/l/l*m*t*t) {}
+
+
 /* computeForces() */
 void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
                                          const Eigen::Ref<const Eigen::Matrix3Xd>& x,
