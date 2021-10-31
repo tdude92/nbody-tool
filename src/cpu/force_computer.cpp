@@ -1,7 +1,10 @@
 #include "force_computer.hpp"
 
+#include <Eigen>
 #include <cstdint>
 #include <cmath>
+#include <queue>
+#include "octree.hpp"
 
 /* CONSTRUCTORS */
 /* CONSTRUCTORS PERFORM UNIT CONVERSIONS */
@@ -32,5 +35,32 @@ void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
             Eigen::VectorXd dx = x.col(i) - x.col(j);
             a.col(i) += -G*m(j)*(dx)/std::pow(dx.dot(dx) + softening*softening, 1.5); // Force computation
         }
+    }
+}
+
+
+void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                            const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+    // TODO document this
+    delete this->root;
+
+    // Get octree root bounds and construct octree root
+    Eigen::Matrix<double, 3, 1> minPos = x.rowwise().minCoeff();
+    Eigen::Matrix<double, 3, 1> maxPos = x.rowwise().maxCoeff();
+    Eigen::Matrix<double, 3, 1> widths = maxPos - minPos;
+    double rootWidth = widths.maxCoeff();
+
+    this->root = new OctreeNode(minPos(0), minPos(0) + rootWidth,
+                                minPos(1), minPos(1) + rootWidth,
+                                minPos(2), minPos(2) + rootWidth);
+    
+    // Construct Barnes-Hut tree
+    for (int i = 0; i < x.cols(); ++i) {
+        this->root->addObject(m(i), x.col(i));
+    }
+
+    // TODO Compute accelerations
+    for (int i = 0; i < x.cols(); ++i) {
     }
 }

@@ -28,7 +28,7 @@ void benchmark(Simulator& sim, int iters, const std::string& name) {
         stepAvg += std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     }
     std::cout << "computeForces(): " << computeForcesAvg/iters << " ms" << std::endl;
-    std::cout << "step(): " << stepAvg/iters << " ms" << std::endl;
+    std::cout << "step(): " << stepAvg/iters << " ms" << std::endl << std::endl;
 }
 
 int main() {
@@ -36,7 +36,11 @@ int main() {
     Simulator sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
                                 new Gravitational_Direct(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
+    Simulator sim2d_euler_gbh_1k(1, 1000, new EulerIntegrator(),
+                                 new Gravitational_BarnesHut(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
+
     benchmark(sim2d_euler_gd_1k, 5, "Simulator Euler Gravitational_Direct 1k");
+    benchmark(sim2d_euler_gbh_1k, 5, "Simulator Euler Gravitational_BarnesHut 1k");
 
     return 0;
 }
