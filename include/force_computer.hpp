@@ -55,6 +55,7 @@ class Gravitational_Direct: public ForceComputer {
 class Gravitational_BarnesHut: public ForceComputer {
     public:
         OctreeNode* root;       //!< Root node of the Barnes-Hut tree.
+        const double theta;     //!< Theta parameter for Barnes-Hut algorithm
         const double softening; //!< Softening parameter for non-colliding n-body sim.
         const double G;         //!< Gravitational constant. Changes depending on units.
         
@@ -66,7 +67,7 @@ class Gravitational_BarnesHut: public ForceComputer {
          * @param m Unit of mass
          * @param t Unit of time
          */
-        Gravitational_BarnesHut(double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
+        Gravitational_BarnesHut(double theta, double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
         void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
                            const Eigen::Ref<const Eigen::RowVectorXd>& m);

@@ -14,8 +14,9 @@ Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m,
 , G(6.67430e-11/l/l/l*m*t*t) {}
 
 
-Gravitational_BarnesHut::Gravitational_BarnesHut(double softening, unit_t l, unit_t m, unit_t t)
+Gravitational_BarnesHut::Gravitational_BarnesHut(double theta, double softening, unit_t l, unit_t m, unit_t t)
 : root(nullptr)
+, theta(theta)
 , softening(softening)
 , G(6.67430e-11/l/l/l*m*t*t) {}
 
@@ -60,7 +61,38 @@ void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
         this->root->addObject(m(i), x.col(i));
     }
 
-    // TODO Compute accelerations
+    // Compute accelerations
     for (int i = 0; i < x.cols(); ++i) {
+        // Set acceleration to zero
+        a.col(i).setZero();
+
+        // Iterate through tree using breadth-first traversal
+        std::queue<OctreeNode*> bfsQ;
+        bfsQ.push(this->root);
+        while (bfsQ.size() > 0) {
+            // Get current node
+            OctreeNode* currNode = bfsQ.front();
+            bfsQ.pop();
+
+            // Compute s/d
+            double s = currNode->xMax - currNode->xMin;
+            double d = (x.col(i) - currNode->centerOfMass).norm();
+            if (s/d < theta || currNode->isExternal) {
+                // Current node is sufficiently far away from the current object
+                Eigen::VectorXd dx = x.col(i) - currNode->centerOfMass;
+                a.col(i) += -G*currNode->totalMass*(dx)/std::pow(dx.dot(dx) + softening*softening, 1.5); // Force computation
+            } else {
+                // Current node not sufficiently far from the current object
+                // Add currNode's children to queue
+                for (int z = 0; z < 2; ++z) {
+                    for (int y = 0; y < 2; ++y) {
+                        for (int x = 0; x < 2; ++x) {
+                            OctreeNode* child = currNode->children[z][y][x];
+                            if (!child->isEmpty) bfsQ.push(child);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
