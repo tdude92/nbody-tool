@@ -36,11 +36,11 @@ int main() {
     Simulator sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
                                 new Gravitational_Direct(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
-    Simulator sim2d_euler_gbh_1k(1, 1000, new EulerIntegrator(),
+    Simulator sim2d_euler_gbh_1k(1, 10000, new EulerIntegrator(),
                                  new Gravitational_BarnesHut(1, 0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
-    benchmark(sim2d_euler_gd_1k, 5, "Simulator Euler Gravitational_Direct 1k");
-    benchmark(sim2d_euler_gbh_1k, 5, "Simulator Euler Gravitational_BarnesHut 1k");
+    benchmark(sim2d_euler_gd_1k, 2, "Simulator Euler Gravitational_Direct 1k");
+    benchmark(sim2d_euler_gbh_1k, 5, "Simulator Euler Gravitational_BarnesHut 10k");
 
     return 0;
 }

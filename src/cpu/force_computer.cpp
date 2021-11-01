@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <cmath>
 #include <queue>
+#include <vector>
+#include <thread>
 #include "octree.hpp"
 
 /* CONSTRUCTORS */
@@ -40,29 +42,12 @@ void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
 }
 
 
-void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
-                                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
-                                            const Eigen::Ref<const Eigen::RowVectorXd>& m) {
-    // TODO document this
-    delete this->root;
-
-    // Get octree root bounds and construct octree root
-    Eigen::Matrix<double, 3, 1> minPos = x.rowwise().minCoeff();
-    Eigen::Matrix<double, 3, 1> maxPos = x.rowwise().maxCoeff();
-    Eigen::Matrix<double, 3, 1> widths = maxPos - minPos;
-    double rootWidth = widths.maxCoeff();
-
-    this->root = new OctreeNode(minPos(0), minPos(0) + rootWidth,
-                                minPos(1), minPos(1) + rootWidth,
-                                minPos(2), minPos(2) + rootWidth);
-    
-    // Construct Barnes-Hut tree
-    for (int i = 0; i < x.cols(); ++i) {
-        this->root->addObject(m(i), x.col(i));
-    }
-
-    // Compute accelerations
-    for (int i = 0; i < x.cols(); ++i) {
+void Gravitational_BarnesHut::threadComputeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                                  const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                                  const Eigen::Ref<const Eigen::RowVectorXd>& m,
+                                                  int startIdx,
+                                                  int endIdx) {
+    for (int i = startIdx; i < endIdx; ++i) {
         // Set acceleration to zero
         a.col(i).setZero();
 
@@ -94,5 +79,47 @@ void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
                 }
             }
         }
+    }
+}
+
+
+void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                            const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+    // TODO document this
+    delete this->root;
+
+    // Get octree root bounds and construct octree root
+    Eigen::Matrix<double, 3, 1> minPos = x.rowwise().minCoeff();
+    Eigen::Matrix<double, 3, 1> maxPos = x.rowwise().maxCoeff();
+    Eigen::Matrix<double, 3, 1> widths = maxPos - minPos;
+    double rootWidth = widths.maxCoeff();
+
+    this->root = new OctreeNode(minPos(0), minPos(0) + rootWidth,
+                                minPos(1), minPos(1) + rootWidth,
+                                minPos(2), minPos(2) + rootWidth);
+    
+    // Construct Barnes-Hut tree
+    for (int i = 0; i < x.cols(); ++i) {
+        this->root->addObject(m(i), x.col(i));
+    }
+
+    // Compute accelerations
+    int nThreads = std::thread::hardware_concurrency();
+    int width = x.cols() / nThreads;
+    int remainder = x.cols() % nThreads;
+    std::vector<std::thread> threads;
+    for (int i = 0; i < nThreads; ++i) {
+        int startIdx = i*width;
+        int endIdx = (i + 1)*width;
+        if (i == nThreads - 1) {
+            endIdx += remainder; // Add remaining indices to final thread
+        }
+
+        threads.emplace_back(&Gravitational_BarnesHut::threadComputeForces, this, a, x, m, startIdx, endIdx);
+    }
+
+    for (int i = 0; i < threads.size(); ++i) {
+        threads[i].join();
     }
 }

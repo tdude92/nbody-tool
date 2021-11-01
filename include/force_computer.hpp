@@ -68,6 +68,20 @@ class Gravitational_BarnesHut: public ForceComputer {
          * @param t Unit of time
          */
         Gravitational_BarnesHut(double theta, double softening, unit_t l = Unit::Meter, unit_t m = Unit::Kilogram, unit_t t = Unit::Second);
+        
+        /**
+         * @brief Function for threads. Computes the acceleration of bodies from indices startIdx to endIdx (endIdx not included)
+         * 
+         * @param x 
+         * @param m 
+         * @return double 
+         */
+        void threadComputeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                 const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                 const Eigen::Ref<const Eigen::RowVectorXd>& m,
+                                 int startIdx,
+                                 int endIdx);
+
         void computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
                            const Eigen::Ref<const Eigen::RowVectorXd>& m);
