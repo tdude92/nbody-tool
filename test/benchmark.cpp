@@ -14,7 +14,7 @@ void benchmark(Simulator& sim, int iters, const std::string& name) {
         sim.addObject(rand() % 100, 0.001, Eigen::Vector3d::Random()*1000, Eigen::Vector3d::Random()*1);
     }
 
-    std::chrono::time_point<std::chrono::steady_clock> start, end;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
     double stepAvg = 0, computeForcesAvg = 0;
     for (int i = 0; i < iters; ++i) {
         start = std::chrono::high_resolution_clock::now();
@@ -36,7 +36,7 @@ int main() {
     Simulator sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
                                 new Gravitational_Direct(0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
-    Simulator sim2d_euler_gbh_1k(1, 10000, new EulerIntegrator(),
+    Simulator sim2d_euler_gbh_1k(1, 100000, new EulerIntegrator(),
                                  new Gravitational_BarnesHut(1, 0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
     benchmark(sim2d_euler_gd_1k, 2, "Simulator Euler Gravitational_Direct 1k");

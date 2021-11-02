@@ -16,3 +16,4 @@ else()
 endif()
 
 add_library(${BINARY} STATIC ${SOURCES})
+target_link_libraries(${BINARY} PUBLIC pthread)

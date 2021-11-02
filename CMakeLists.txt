@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(nbodytool LANGUAGES CXX)
 
 option(NBT_BUILD_TESTS "Build Tests" OFF)
