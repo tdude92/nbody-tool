@@ -40,7 +40,7 @@ int main() {
                                  new Gravitational_BarnesHut(1, 0.01, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
     benchmark(sim2d_euler_gd_1k, 2, "Simulator Euler Gravitational_Direct 1k");
-    benchmark(sim2d_euler_gbh_1k, 5, "Simulator Euler Gravitational_BarnesHut 10k");
+    benchmark(sim2d_euler_gbh_1k, 5, "Simulator Euler Gravitational_BarnesHut 100k");
 
     return 0;
 }
