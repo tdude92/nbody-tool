@@ -18,8 +18,8 @@
  */
 class Simulator {
     private:
-        Integrator* const integrator;       //!< Integrator used in this simulation.
-        ForceComputer* const forceComputer; //!< ForceComputer use in this simulation.
+        Integrator* const integrator;         //!< Integrator used in this simulation.
+        DynamicsEngine* const dynamicsEngine; //!< dynamicsEngine use in this simulation.
 
         double timeStep; //!< dt value used in integrators.
 
@@ -44,15 +44,22 @@ class Simulator {
         const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
 
         /*! Constructs a Simulator object. */
-        Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer);
+        Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, DynamicsEngine* dynamicsEngine);
         
         /*! Destroys a Simulator object and deallocates all used memory. */
         ~Simulator();
 
-        // TODO energy
+        /*! Returns sum of kinetic energies of the particles in the system. */
         double totalKineticEnergy();
+
+        /*! Returns sum of potential energies of each particle in the sytem */
         double totalPotentialEnergy();
+
+        /*! Returns the sum of totalKineticEnergy() and totalPotentialEnergy() */
         double totalEnergy();
+
+        /*! Returns sum of moments of inertia of each particle in the system */
+        double totalMomentOfInertia();
 
         /*! Returns number of active objects */
         Rigidbody nObjects();

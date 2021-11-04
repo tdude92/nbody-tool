@@ -7,11 +7,11 @@
 #include "integrator.hpp"
 #include "rigidbody.hpp"
 
-Simulator::Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, ForceComputer* forceComputer)
+Simulator::Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, DynamicsEngine* dynamicsEngine)
 : timeStep(timeStep)
 , maxObjects(maxObjects)
 , integrator(integrator)
-, forceComputer(forceComputer)
+, dynamicsEngine(dynamicsEngine)
 , m(1, maxObjects)
 , r(1, maxObjects)
 , pos(3, maxObjects)
@@ -25,7 +25,30 @@ Simulator::Simulator(double timeStep, uint64_t maxObjects, Integrator* integrato
 Simulator::~Simulator() {
     // Deallocate heap variables
     delete this->integrator;
-    delete this->forceComputer;
+    delete this->dynamicsEngine;
+}
+
+
+double Simulator::totalKineticEnergy() {
+    // (1/2)*sum(m_i * |v_i|^2)
+    return 0.5*active(m).cwiseProduct(active(v).colwise().squaredNorm()).sum();
+}
+
+
+double Simulator::totalPotentialEnergy() {
+    // Sum of potential energies
+    return this->dynamicsEngine->totalPotentialEnergy(pos, m);
+}
+
+
+double Simulator::totalEnergy() {
+    return this->totalKineticEnergy() + this->totalPotentialEnergy();
+}
+
+
+double Simulator::totalMomentOfInertia() {
+    // sum(m_i * |pos_i|^2)
+    return active(m).cwiseProduct(active(pos).colwise().squaredNorm()).sum();
 }
 
 
@@ -165,7 +188,7 @@ Eigen::Ref<const Eigen::RowVectorXd> Simulator::activeR() {
 }
 
 void Simulator::computeForces() {
-    this->forceComputer->computeForces(
+    this->dynamicsEngine->updateAccelerations(
         this->active(this->a),
         this->active(this->pos),
         this->active(this->m)

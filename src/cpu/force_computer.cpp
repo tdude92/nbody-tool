@@ -6,27 +6,41 @@
 #include <queue>
 #include <vector>
 #include <thread>
+#include "units.hpp"
 #include "octree.hpp"
 
-/* CONSTRUCTORS */
-/* CONSTRUCTORS PERFORM UNIT CONVERSIONS */
 
-Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m, unit_t t)
-: softening(softening)
-, G(6.67430e-11/l/l/l*m*t*t) {}
+/* class DynamicsEngine */
+
+double DynamicsEngine::totalPotentialEnergy(const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                            const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+    // Iterate through each pair of distinct objects and adds their potential energy to a sum.
+    double sumPotentialEnergies = 0;
+    for (int i = 0; i < x.cols(); ++i) {
+        for (int j = 0; j < x.cols(); ++j) {
+            if (i == j) continue;
+            sumPotentialEnergies += this->pairPotentialEnergy(x.col(i), x.col(j), m(i), m(j));
+        }
+    }
+    return sumPotentialEnergies;
+}
 
 
-Gravitational_BarnesHut::Gravitational_BarnesHut(double theta, double softening, unit_t l, unit_t m, unit_t t)
-: root(nullptr)
-, theta(theta)
-, softening(softening)
-, G(6.67430e-11/l/l/l*m*t*t) {}
+double DynamicsEngine::pairPotentialEnergy(const Eigen::Vector3d& x_i,
+                                           const Eigen::Vector3d& x_j,
+                                           double m_i,
+                                           double m_j) {
+    // Returns zero as a placeholder.
+    // Should be overriden by subclasses to get actual potential energy.
+    return 0;
+}
 
 
-/* computeForces() */
-void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
-                                         const Eigen::Ref<const Eigen::Matrix3Xd>& x,
-                                         const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+/* class Abstract_Direct */
+
+void Abstract_Direct::updateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                          const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                          const Eigen::Ref<const Eigen::RowVectorXd>& m) {
     // Iterate through each pair of objects and compute gravitational force
     uint64_t n = x.cols();
     for (uint64_t i = 0; i < n; ++i) {
@@ -34,19 +48,29 @@ void Gravitational_Direct::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
 
         for (uint64_t j = 0; j < n; ++j) {
             if (i == j) continue;
-
-            Eigen::VectorXd dx = x.col(i) - x.col(j);
-            a.col(i) += -G*m(j)*(dx)/std::pow(dx.dot(dx) + softening*softening, 1.5); // Force computation
+            this->pairAcceleration(a.col(i), x.col(i), x.col(j), m(i), m(j)); // Force computation
         }
     }
 }
 
 
-void Gravitational_BarnesHut::threadComputeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
-                                                  const Eigen::Ref<const Eigen::Matrix3Xd>& x,
-                                                  const Eigen::Ref<const Eigen::RowVectorXd>& m,
-                                                  int startIdx,
-                                                  int endIdx) {
+/* class Abstract_BarnesHut */
+
+Abstract_BarnesHut::Abstract_BarnesHut(double theta)
+: root(nullptr)
+, theta(theta) {}
+
+
+Abstract_BarnesHut::~Abstract_BarnesHut() {
+    // this->root guaranteed pointing to OctreeNode or nullptr
+    delete this->root;
+}
+
+
+void Abstract_BarnesHut::threadUpdateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> a,
+                                                   const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                                   const Eigen::Ref<const Eigen::RowVectorXd>& m,
+                                                   int startIdx, int endIdx) {
     for (int i = startIdx; i < endIdx; ++i) {
         // Set acceleration to zero
         a.col(i).setZero();
@@ -64,8 +88,7 @@ void Gravitational_BarnesHut::threadComputeForces(Eigen::Ref<Eigen::Matrix3Xd> a
             double d = (x.col(i) - currNode->centerOfMass).norm();
             if (s/d < theta || currNode->isExternal) {
                 // Current node is sufficiently far away from the current object
-                Eigen::VectorXd dx = x.col(i) - currNode->centerOfMass;
-                a.col(i) += -G*currNode->totalMass*(dx)/std::pow(dx.dot(dx) + softening*softening, 1.5); // Force computation
+                this->pairAcceleration(a.col(i), x.col(i), currNode->centerOfMass, m(i), currNode->totalMass); // Force computation
             } else {
                 // Current node not sufficiently far from the current object
                 // Add currNode's children to queue
@@ -83,9 +106,9 @@ void Gravitational_BarnesHut::threadComputeForces(Eigen::Ref<Eigen::Matrix3Xd> a
 }
 
 
-void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
-                                            const Eigen::Ref<const Eigen::Matrix3Xd>& x,
-                                            const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+void Abstract_BarnesHut::updateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> a,
+                         const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                         const Eigen::Ref<const Eigen::RowVectorXd>& m) {
     // TODO document this
     delete this->root;
 
@@ -116,10 +139,57 @@ void Gravitational_BarnesHut::computeForces(Eigen::Ref<Eigen::Matrix3Xd> a,
             endIdx += remainder; // Add remaining indices to final thread
         }
 
-        threads.emplace_back(&Gravitational_BarnesHut::threadComputeForces, this, a, x, m, startIdx, endIdx);
+        threads.emplace_back(&Abstract_BarnesHut::threadUpdateAccelerations, this, a, x, m, startIdx, endIdx);
     }
 
     for (int i = 0; i < threads.size(); ++i) {
         threads[i].join();
     }
+}
+
+
+/* class Gravitational_Direct */
+
+Gravitational_Direct::Gravitational_Direct(double softening, unit_t l, unit_t m, unit_t t)
+: softening(softening)
+, G(6.67430e-11/l/l/l*m*t*t) {}
+
+
+void Gravitational_Direct::pairAcceleration(Eigen::Ref<Eigen::Vector3d> a_i,
+                                            const Eigen::Vector3d& x_i,
+                                            const Eigen::Vector3d& x_j,
+                                            double m_i, double m_j) {
+    Eigen::VectorXd dx = x_i - x_j;
+    a_i += -G*m_j*(dx)/std::pow(dx.squaredNorm() + softening*softening, 1.5);
+}
+
+
+double Gravitational_Direct::pairPotentialEnergy(const Eigen::Vector3d& x_i,
+                                                 const Eigen::Vector3d& x_j,
+                                                 double m_i, double m_j) {
+    return -G*m_j*m_i/2.0/(x_j - x_i).norm();
+}
+
+
+/* class Gravitational_BarnesHut */
+
+Gravitational_BarnesHut::Gravitational_BarnesHut(double theta, double softening, unit_t l, unit_t m, unit_t t)
+: Abstract_BarnesHut(theta)
+, softening(softening)
+, G(6.67430e-11/l/l/l*m*t*t) {}
+
+
+void Gravitational_BarnesHut::pairAcceleration(Eigen::Ref<Eigen::Vector3d> a_i,
+                                               const Eigen::Vector3d& x_i,
+                                               const Eigen::Vector3d& x_j,
+                                               double m_i, double m_j) {
+    Eigen::VectorXd dx = x_i - x_j;
+    a_i += -G*m_j*(dx)/std::pow(dx.squaredNorm() + softening*softening, 1.5);
+}
+
+
+double Gravitational_BarnesHut::pairPotentialEnergy(const Eigen::Vector3d& x_i,
+                                                    const Eigen::Vector3d& x_j,
+                                                    double m_i, double m_j) {
+    return -G*m_j*m_i/2.0/(x_j - x_i).norm();
 }
