@@ -108,7 +108,6 @@ void Abstract_BarnesHut::threadUpdateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> 
 void Abstract_BarnesHut::updateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> a,
                                              const Eigen::Ref<const Eigen::Matrix3Xd>& x,
                                              const Eigen::Ref<const Eigen::RowVectorXd>& m) {
-    // TODO document this
     delete this->root;
 
     // Get octree root bounds and construct octree root

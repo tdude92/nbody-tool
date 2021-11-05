@@ -39,7 +39,7 @@ class Simulator {
         std::queue<Rigidbody> availableUsedIDs; //!< Stores IDs of destroyed objects for reallocation
        
         /*! Returns slice of array structure component with only active objects. */
-        Eigen::Ref<Eigen::MatrixXd> active(Eigen::Ref<Eigen::MatrixXd> mat); // TODO test
+        Eigen::Ref<Eigen::MatrixXd> active(Eigen::Ref<Eigen::MatrixXd> mat);
     public:
         const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
 
