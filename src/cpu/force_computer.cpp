@@ -11,7 +11,6 @@
 
 
 /* class DynamicsEngine */
-
 double DynamicsEngine::totalPotentialEnergy(const Eigen::Ref<const Eigen::Matrix3Xd>& x,
                                             const Eigen::Ref<const Eigen::RowVectorXd>& m) {
     // Iterate through each pair of distinct objects and adds their potential energy to a sum.
@@ -107,8 +106,8 @@ void Abstract_BarnesHut::threadUpdateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> 
 
 
 void Abstract_BarnesHut::updateAccelerations(Eigen::Ref<Eigen::Matrix3Xd> a,
-                         const Eigen::Ref<const Eigen::Matrix3Xd>& x,
-                         const Eigen::Ref<const Eigen::RowVectorXd>& m) {
+                                             const Eigen::Ref<const Eigen::Matrix3Xd>& x,
+                                             const Eigen::Ref<const Eigen::RowVectorXd>& m) {
     // TODO document this
     delete this->root;
 

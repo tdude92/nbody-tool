@@ -1,5 +1,6 @@
 #include "simulator.hpp"
 
+#include <iostream>
 #include <exception>
 #include <cstdint>
 #include <limits>
@@ -37,7 +38,7 @@ double Simulator::totalKineticEnergy() {
 
 double Simulator::totalPotentialEnergy() {
     // Sum of potential energies
-    return this->dynamicsEngine->totalPotentialEnergy(pos, m);
+    return this->dynamicsEngine->totalPotentialEnergy(active(pos), active(m));
 }
 
 
@@ -54,6 +55,11 @@ double Simulator::totalMomentOfInertia() {
 
 Eigen::Ref<Eigen::MatrixXd> Simulator::active(Eigen::Ref<Eigen::MatrixXd> mat) {
     // Return map to slice (1, this->nextIdx). Works because SoA is densely packed.
+    if (this->nObjects() == 0) {
+        std::cerr << "Error: Simulator method called on empty simulator." << std::endl;
+        throw std::runtime_error("Error: Simulator method called on empty simulator.");
+    }
+
     return mat(Eigen::all, Eigen::seq(0, this->nextIdx - 1));
 }
 
@@ -68,7 +74,8 @@ Rigidbody Simulator::addObject(double m, double r, const Eigen::Vector3d& p0, co
 
     // Check for max number of objects reached
     if (this->nextIdx >= this->maxObjects) {
-        throw std::overflow_error("ERROR: Max number of objects reached.");
+        std::cerr << "Error: Max number of objects reached." << std::endl;
+        throw std::overflow_error("Error: Max number of objects reached.");
     }
 
     // Get new object's index in SoA
@@ -101,7 +108,8 @@ Rigidbody Simulator::addObject(double m, double r, const Eigen::Vector3d& p0, co
 void Simulator::delObject(Rigidbody id) {
     // Check object exists
     if (!this->rb_exists(id)) {
-        throw std::out_of_range("ERROR: Rigidbody id not valid.");
+        std::cerr << "Error: Rigidbody id not valid." << std::endl;
+        throw std::out_of_range("Error: Rigidbody id not valid.");
     }
 
     // Get deleted object's idx
