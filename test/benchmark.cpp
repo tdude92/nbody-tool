@@ -62,17 +62,21 @@ int main() {
     // Simulator2d 1k Euler Gravitational_Direct
     Simulator sim2d_euler_gd_1k(1, 1000, new EulerIntegrator(),
                                 new Gravitational_Direct(0.1, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
+    
+    Simulator sim2d_verlet_gbh_1k(1, 1000, new EulerIntegrator(),
+                                   new Gravitational_BarnesHut(1, 0.1, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
-    Simulator sim2d_euler_gbh_10k(1, 1000, new EulerIntegrator(),
-                                 new Gravitational_BarnesHut(1, 0.1, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
+    Simulator sim2d_verlet_gbh_10k(1, 10000, new VerletIntegrator(),
+                                   new Gravitational_BarnesHut(1, 0.1, Unit::LightYear, Unit::SolarMass, Unit::JulianMillenium));
 
     initializeSim(sim2d_euler_gd_1k);
-    initializeSim(sim2d_euler_gbh_10k);
+    initializeSim(sim2d_verlet_gbh_1k);
+    initializeSim(sim2d_verlet_gbh_10k);
 
-    energyConservationTest(sim2d_euler_gbh_10k, 5, "Simulator Euler Gravitational_BarnesHut 10k");
+    energyConservationTest(sim2d_verlet_gbh_1k, 1000, "Simulator Verlet Gravitational_BarnesHut 1k");
 
     benchmark(sim2d_euler_gd_1k, 3, "Simulator Euler Gravitational_Direct 1k");
-    benchmark(sim2d_euler_gbh_10k, 5, "Simulator Euler Gravitational_BarnesHut 10k");
+    benchmark(sim2d_verlet_gbh_10k, 5, "Simulator Verlet Gravitational_BarnesHut 10k");
 
     return 0;
 }

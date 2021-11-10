@@ -50,6 +50,9 @@ class EulerIntegrator: public Integrator {
  */
 class VerletIntegrator: public Integrator {
     public:
+        bool isFirstIteration = true;
+        Eigen::MatrixXd aPrev;
+
         /**
          * @brief Computes velocities and positions from accelerations and time step.
          * 
@@ -61,7 +64,7 @@ class VerletIntegrator: public Integrator {
         void integrate(double dt,
                        const Eigen::Ref<const Eigen::MatrixXd>& a,
                        Eigen::Ref<Eigen::MatrixXd> v,
-                       Eigen::Ref<Eigen::MatrixXd> x); // TODO verlet
+                       Eigen::Ref<Eigen::MatrixXd> x);
 };
 
 
