@@ -4,7 +4,7 @@ project(nbodytool LANGUAGES CXX)
 option(NBT_BUILD_TESTS "Build Tests" OFF)
 option(NBT_USE_CUDA "Use CUDA Acceleration" OFF)
 
-if(USE_CUDA)
+if(NBT_USE_CUDA)
     enable_language(CUDA)
     include(FindCUDA/select_compute_arch)
     CUDA_DETECT_INSTALLED_GPUS(INSTALLED_GPU_CCS_1)
