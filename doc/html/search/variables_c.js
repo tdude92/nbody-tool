@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['root_0',['root',['../class_gravitational___barnes_hut.html#a4425946d0d8148b12bfd5410cb587c63',1,'Gravitational_BarnesHut']]]
+  ['root_0',['root',['../class_abstract___barnes_hut.html#a63ec8f9271cb25a413403d7c4716069b',1,'Abstract_BarnesHut']]]
 ];

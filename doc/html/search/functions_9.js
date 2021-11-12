@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7esimulator2d_0',['~Simulator2d',['../class_simulator2d.html#adec92d298e0e0611d2f691d536a5fafc',1,'Simulator2d']]]
+  ['simulator_0',['Simulator',['../class_simulator.html#ac970221e4f419c41be0f5669286bda93',1,'Simulator']]],
+  ['step_1',['step',['../class_simulator.html#ac11a8e1119c88c075853f11a23518d0d',1,'Simulator']]]
 ];

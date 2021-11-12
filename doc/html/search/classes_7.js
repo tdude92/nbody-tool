@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verletintegrator_0',['VerletIntegrator',['../class_verlet_integrator.html',1,'']]]
+  ['simulator_0',['Simulator',['../class_simulator.html',1,'']]]
 ];

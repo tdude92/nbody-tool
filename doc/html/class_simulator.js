@@ -1,6 +1,6 @@
 var class_simulator =
 [
-    [ "Simulator", "class_simulator.html#aa51ec81c68ee92bec66661bad0854331", null ],
+    [ "Simulator", "class_simulator.html#ac970221e4f419c41be0f5669286bda93", null ],
     [ "~Simulator", "class_simulator.html#a0f49aa04f42060a785adf77346b9de9f", null ],
     [ "activeA", "class_simulator.html#a1cc7b34aac797527ca568e18fc273815", null ],
     [ "activeM", "class_simulator.html#a1f3fc355b863ccd9175426a70f6b385a", null ],
@@ -21,6 +21,7 @@ var class_simulator =
     [ "step", "class_simulator.html#ac11a8e1119c88c075853f11a23518d0d", null ],
     [ "totalEnergy", "class_simulator.html#a87758de1bdb926f7a6fe1e3bafbcae73", null ],
     [ "totalKineticEnergy", "class_simulator.html#aefbdae84c65bc7b3a3c774d1feb2ee03", null ],
+    [ "totalMomentOfInertia", "class_simulator.html#ae17137d8467210cad50ee76e841deeab", null ],
     [ "totalPotentialEnergy", "class_simulator.html#aba8d761490a71b4b9569152e6e2a4c50", null ],
     [ "maxObjects", "class_simulator.html#a96a64308ece072be322fc6fddbe94c51", null ]
 ];

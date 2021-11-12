@@ -95,8 +95,8 @@ $(document).ready(function(){initNavTree('class_simulator.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa51ec81c68ee92bec66661bad0854331"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#aa51ec81c68ee92bec66661bad0854331">Simulator</a> (double timeStep, uint64_t <a class="el" href="class_simulator.html#a96a64308ece072be322fc6fddbe94c51">maxObjects</a>, <a class="el" href="class_integrator.html">Integrator</a> *integrator, <a class="el" href="class_force_computer.html">ForceComputer</a> *forceComputer)</td></tr>
-<tr class="separator:aa51ec81c68ee92bec66661bad0854331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac970221e4f419c41be0f5669286bda93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#ac970221e4f419c41be0f5669286bda93">Simulator</a> (double timeStep, uint64_t <a class="el" href="class_simulator.html#a96a64308ece072be322fc6fddbe94c51">maxObjects</a>, <a class="el" href="class_integrator.html">Integrator</a> *integrator, <a class="el" href="class_dynamics_engine.html">DynamicsEngine</a> *dynamicsEngine)</td></tr>
+<tr class="separator:ac970221e4f419c41be0f5669286bda93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f49aa04f42060a785adf77346b9de9f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#a0f49aa04f42060a785adf77346b9de9f">~Simulator</a> ()</td></tr>
 <tr class="separator:a0f49aa04f42060a785adf77346b9de9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefbdae84c65bc7b3a3c774d1feb2ee03"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#aefbdae84c65bc7b3a3c774d1feb2ee03">totalKineticEnergy</a> ()</td></tr>
@@ -105,6 +105,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aba8d761490a71b4b9569152e6e2a4c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87758de1bdb926f7a6fe1e3bafbcae73"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#a87758de1bdb926f7a6fe1e3bafbcae73">totalEnergy</a> ()</td></tr>
 <tr class="separator:a87758de1bdb926f7a6fe1e3bafbcae73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17137d8467210cad50ee76e841deeab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#ae17137d8467210cad50ee76e841deeab">totalMomentOfInertia</a> ()</td></tr>
+<tr class="separator:ae17137d8467210cad50ee76e841deeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512d827cf5e831b2c3571b496a787779"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rigidbody_8hpp.html#a01fdfafc31779b3179df142613a253d0">Rigidbody</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#a512d827cf5e831b2c3571b496a787779">nObjects</a> ()</td></tr>
 <tr class="separator:a512d827cf5e831b2c3571b496a787779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef9d16155fae03f503e4514a1de2dd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rigidbody_8hpp.html#a01fdfafc31779b3179df142613a253d0">Rigidbody</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulator.html#adef9d16155fae03f503e4514a1de2dd6">addObject</a> (double m, double r, const Eigen::Vector3d &amp;p0, const Eigen::Vector3d &amp;v0)</td></tr>
@@ -151,8 +153,8 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="simulator_8hpp_source.html#l00019">19</a> of file <a class="el" href="simulator_8hpp_source.html">simulator.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa51ec81c68ee92bec66661bad0854331" name="aa51ec81c68ee92bec66661bad0854331"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa51ec81c68ee92bec66661bad0854331">&#9670;&nbsp;</a></span>Simulator()</h2>
+<a id="ac970221e4f419c41be0f5669286bda93" name="ac970221e4f419c41be0f5669286bda93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac970221e4f419c41be0f5669286bda93">&#9670;&nbsp;</a></span>Simulator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,8 +180,8 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_force_computer.html">ForceComputer</a> *&#160;</td>
-          <td class="paramname"><em>forceComputer</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_dynamics_engine.html">DynamicsEngine</a> *&#160;</td>
+          <td class="paramname"><em>dynamicsEngine</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -572,6 +574,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Returns the sum of <a class="el" href="class_simulator.html#aefbdae84c65bc7b3a3c774d1feb2ee03">totalKineticEnergy()</a> and <a class="el" href="class_simulator.html#aba8d761490a71b4b9569152e6e2a4c50">totalPotentialEnergy()</a> </p>
 
 </div>
 </div>
@@ -589,6 +592,25 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Returns sum of kinetic energies of the particles in the system. </p>
+
+</div>
+</div>
+<a id="ae17137d8467210cad50ee76e841deeab" name="ae17137d8467210cad50ee76e841deeab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17137d8467210cad50ee76e841deeab">&#9670;&nbsp;</a></span>totalMomentOfInertia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Simulator::totalMomentOfInertia </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Returns sum of moments of inertia of each particle in the system </p>
 
 </div>
 </div>
@@ -606,6 +628,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Returns sum of potential energies of each particle in the sytem </p>
 
 </div>
 </div>

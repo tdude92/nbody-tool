@@ -85,12 +85,13 @@ $(document).ready(function(){initNavTree('class_verlet_integrator.html',''); ini
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_verlet_integrator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">VerletIntegrator Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_integrator.html">Integrator</a>.</p>
 <table class="memberdecls">
@@ -99,11 +100,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abea496a2bd35b195b195e748d25bf1fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_verlet_integrator.html#abea496a2bd35b195b195e748d25bf1fd">integrate</a> (double dt, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;a, Eigen::Ref&lt; Eigen::MatrixXd &gt; v, Eigen::Ref&lt; Eigen::MatrixXd &gt; x)</td></tr>
 <tr class="memdesc:abea496a2bd35b195b195e748d25bf1fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes velocities and positions from accelerations and time step.  <a href="class_verlet_integrator.html#abea496a2bd35b195b195e748d25bf1fd">More...</a><br /></td></tr>
 <tr class="separator:abea496a2bd35b195b195e748d25bf1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a484043373b4b81742a5861488da79683"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_verlet_integrator.html#a484043373b4b81742a5861488da79683">isFirstIteration</a> = true</td></tr>
+<tr class="separator:a484043373b4b81742a5861488da79683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591d0b05f517b00554a234b206d597b7"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_verlet_integrator.html#a591d0b05f517b00554a234b206d597b7">aPrev</a></td></tr>
+<tr class="separator:a591d0b05f517b00554a234b206d597b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Performs Verlet integration. Is symplectic but not as accurate as <a class="el" href="class_runge_kutta_integrator.html">RungeKuttaIntegrator</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_integrator_8hpp_source.html#l00051">51</a> of file <a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="integrator_8hpp_source.html#l00051">51</a> of file <a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abea496a2bd35b195b195e748d25bf1fd" name="abea496a2bd35b195b195e748d25bf1fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abea496a2bd35b195b195e748d25bf1fd">&#9670;&nbsp;</a></span>integrate()</h2>
@@ -166,8 +174,41 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a591d0b05f517b00554a234b206d597b7" name="a591d0b05f517b00554a234b206d597b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591d0b05f517b00554a234b206d597b7">&#9670;&nbsp;</a></span>aPrev</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd VerletIntegrator::aPrev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="integrator_8hpp_source.html#l00054">54</a> of file <a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a484043373b4b81742a5861488da79683" name="a484043373b4b81742a5861488da79683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a484043373b4b81742a5861488da79683">&#9670;&nbsp;</a></span>isFirstIteration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool VerletIntegrator::isFirstIteration = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="integrator_8hpp_source.html#l00053">53</a> of file <a class="el" href="integrator_8hpp_source.html">integrator.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_integrator_8hpp_source.html">Integrator.hpp</a></li>
+<li>include/<a class="el" href="integrator_8hpp_source.html">integrator.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

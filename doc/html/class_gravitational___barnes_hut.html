@@ -93,39 +93,54 @@ $(document).ready(function(){initNavTree('class_gravitational___barnes_hut.html'
 
 <p><code>#include &lt;<a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_force_computer.html">ForceComputer</a>.</p>
+<p>Inherits <a class="el" href="class_abstract___barnes_hut.html">Abstract_BarnesHut</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2de5a99f7ccebc242703f2b5e86305ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a2de5a99f7ccebc242703f2b5e86305ca">Gravitational_BarnesHut</a> (double <a class="el" href="class_gravitational___barnes_hut.html#a0c563b8138e1b48bba586232949c02d9">theta</a>, double <a class="el" href="class_gravitational___barnes_hut.html#a9e0854f14c9af45868e8f557959b5d01">softening</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> l=<a class="el" href="namespace_unit.html#a751e605750f98496b219e97e55dce03c">Unit::Meter</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> m=<a class="el" href="namespace_unit.html#adc9dcdf1e3f70695fbc9572bab2ed159">Unit::Kilogram</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> t=<a class="el" href="namespace_unit.html#a543ac4de43c7f996c28f7093938e98fb">Unit::Second</a>)</td></tr>
-<tr class="memdesc:a2de5a99f7ccebc242703f2b5e86305ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. Performs unit conversions on <a class="el" href="class_gravitational___barnes_hut.html#a1961a7b470af406e11299d9d224c210a" title="Gravitational constant. Changes depending on units.">G</a>.  <a href="class_gravitational___barnes_hut.html#a2de5a99f7ccebc242703f2b5e86305ca">More...</a><br /></td></tr>
+<tr class="memitem:a2de5a99f7ccebc242703f2b5e86305ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a2de5a99f7ccebc242703f2b5e86305ca">Gravitational_BarnesHut</a> (double <a class="el" href="class_abstract___barnes_hut.html#ab74c00f4e725f9de20bbe82d53a136c9">theta</a>, double <a class="el" href="class_gravitational___barnes_hut.html#a9e0854f14c9af45868e8f557959b5d01">softening</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> l=<a class="el" href="namespace_unit.html#a751e605750f98496b219e97e55dce03c">Unit::Meter</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> m=<a class="el" href="namespace_unit.html#adc9dcdf1e3f70695fbc9572bab2ed159">Unit::Kilogram</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> t=<a class="el" href="namespace_unit.html#a543ac4de43c7f996c28f7093938e98fb">Unit::Second</a>)</td></tr>
+<tr class="memdesc:a2de5a99f7ccebc242703f2b5e86305ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object.  <a href="class_gravitational___barnes_hut.html#a2de5a99f7ccebc242703f2b5e86305ca">More...</a><br /></td></tr>
 <tr class="separator:a2de5a99f7ccebc242703f2b5e86305ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af255aa4f09c7e72e0679c93543449d2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#af255aa4f09c7e72e0679c93543449d2e">threadComputeForces</a> (Eigen::Ref&lt; Eigen::Matrix3Xd &gt; a, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m, int startIdx, int endIdx)</td></tr>
-<tr class="memdesc:af255aa4f09c7e72e0679c93543449d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for threads. Computes the acceleration of bodies from indices startIdx to endIdx (endIdx not included)  <a href="class_gravitational___barnes_hut.html#af255aa4f09c7e72e0679c93543449d2e">More...</a><br /></td></tr>
-<tr class="separator:af255aa4f09c7e72e0679c93543449d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad512d41a482e70d4ec49c4dc2522c580"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#ad512d41a482e70d4ec49c4dc2522c580">computeForces</a> (Eigen::Ref&lt; Eigen::Matrix3Xd &gt; a, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m)</td></tr>
-<tr class="memdesc:ad512d41a482e70d4ec49c4dc2522c580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculates acceleration matrix using object positions and masses.  <a href="class_gravitational___barnes_hut.html#ad512d41a482e70d4ec49c4dc2522c580">More...</a><br /></td></tr>
-<tr class="separator:ad512d41a482e70d4ec49c4dc2522c580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a350e445bda341ff0443da48cb336ace8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a350e445bda341ff0443da48cb336ace8">pairAcceleration</a> (Eigen::Ref&lt; Eigen::Vector3d &gt; a_i, const Eigen::Vector3d &amp;x_i, const Eigen::Vector3d &amp;x_j, double m_i, double m_j) override</td></tr>
+<tr class="memdesc:a350e445bda341ff0443da48cb336ace8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes acceleration from Newtonian gravitation between two particles i and j.  <a href="class_gravitational___barnes_hut.html#a350e445bda341ff0443da48cb336ace8">More...</a><br /></td></tr>
+<tr class="separator:a350e445bda341ff0443da48cb336ace8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af826f02e116504152359387f99a7da32"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#af826f02e116504152359387f99a7da32">pairPotentialEnergy</a> (const Eigen::Vector3d &amp;x_i, const Eigen::Vector3d &amp;x_j, double m_i, double m_j) override</td></tr>
+<tr class="memdesc:af826f02e116504152359387f99a7da32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the gravitational potential energy between a pair of particles i and j.  <a href="class_gravitational___barnes_hut.html#af826f02e116504152359387f99a7da32">More...</a><br /></td></tr>
+<tr class="separator:af826f02e116504152359387f99a7da32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_abstract___barnes_hut"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstract___barnes_hut')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstract___barnes_hut.html">Abstract_BarnesHut</a></td></tr>
+<tr class="memitem:a3f35311b2a3d230dbc59c3b0f771d300 inherit pub_methods_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#a3f35311b2a3d230dbc59c3b0f771d300">Abstract_BarnesHut</a> (double <a class="el" href="class_abstract___barnes_hut.html#ab74c00f4e725f9de20bbe82d53a136c9">theta</a>)</td></tr>
+<tr class="memdesc:a3f35311b2a3d230dbc59c3b0f771d300 inherit pub_methods_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="class_abstract___direct.html">Abstract_Direct</a> object.  <a href="class_abstract___barnes_hut.html#a3f35311b2a3d230dbc59c3b0f771d300">More...</a><br /></td></tr>
+<tr class="separator:a3f35311b2a3d230dbc59c3b0f771d300 inherit pub_methods_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaed1ea6af7f0be220348f1007b55c16 inherit pub_methods_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#afaed1ea6af7f0be220348f1007b55c16">~Abstract_BarnesHut</a> ()</td></tr>
+<tr class="memdesc:afaed1ea6af7f0be220348f1007b55c16 inherit pub_methods_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="class_abstract___barnes_hut.html">Abstract_BarnesHut</a> object.  <a href="class_abstract___barnes_hut.html#afaed1ea6af7f0be220348f1007b55c16">More...</a><br /></td></tr>
+<tr class="separator:afaed1ea6af7f0be220348f1007b55c16 inherit pub_methods_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f133f7d4099a756559281007490948 inherit pub_methods_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#a54f133f7d4099a756559281007490948">threadUpdateAccelerations</a> (Eigen::Ref&lt; Eigen::Matrix3Xd &gt; a, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m, int startIdx, int endIdx)</td></tr>
+<tr class="memdesc:a54f133f7d4099a756559281007490948 inherit pub_methods_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for threads. Computes the acceleration of bodies from indices startIdx to endIdx (endIdx not included)  <a href="class_abstract___barnes_hut.html#a54f133f7d4099a756559281007490948">More...</a><br /></td></tr>
+<tr class="separator:a54f133f7d4099a756559281007490948 inherit pub_methods_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d342b9e05999d3ce3c54023a4baec93 inherit pub_methods_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#a5d342b9e05999d3ce3c54023a4baec93">updateAccelerations</a> (Eigen::Ref&lt; Eigen::Matrix3Xd &gt; a, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m) override</td></tr>
+<tr class="memdesc:a5d342b9e05999d3ce3c54023a4baec93 inherit pub_methods_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes forces acting on each particle using the Barnes-Hut algorithm.  <a href="class_abstract___barnes_hut.html#a5d342b9e05999d3ce3c54023a4baec93">More...</a><br /></td></tr>
+<tr class="separator:a5d342b9e05999d3ce3c54023a4baec93 inherit pub_methods_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_dynamics_engine"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_dynamics_engine')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_dynamics_engine.html">DynamicsEngine</a></td></tr>
+<tr class="memitem:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dynamics_engine.html#ae06dfaeee50918cc335862ed112d1274">totalPotentialEnergy</a> (const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m)</td></tr>
+<tr class="memdesc:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the potential energy of a system based on particle positions and masses.  <a href="class_dynamics_engine.html#ae06dfaeee50918cc335862ed112d1274">More...</a><br /></td></tr>
+<tr class="separator:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4425946d0d8148b12bfd5410cb587c63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_octree_node.html">OctreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a4425946d0d8148b12bfd5410cb587c63">root</a></td></tr>
-<tr class="memdesc:a4425946d0d8148b12bfd5410cb587c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root node of the Barnes-Hut tree.  <a href="class_gravitational___barnes_hut.html#a4425946d0d8148b12bfd5410cb587c63">More...</a><br /></td></tr>
-<tr class="separator:a4425946d0d8148b12bfd5410cb587c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c563b8138e1b48bba586232949c02d9"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a0c563b8138e1b48bba586232949c02d9">theta</a></td></tr>
-<tr class="memdesc:a0c563b8138e1b48bba586232949c02d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta parameter for Barnes-Hut algorithm.  <a href="class_gravitational___barnes_hut.html#a0c563b8138e1b48bba586232949c02d9">More...</a><br /></td></tr>
-<tr class="separator:a0c563b8138e1b48bba586232949c02d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0854f14c9af45868e8f557959b5d01"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a9e0854f14c9af45868e8f557959b5d01">softening</a></td></tr>
-<tr class="memdesc:a9e0854f14c9af45868e8f557959b5d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Softening parameter for non-colliding n-body sim.  <a href="class_gravitational___barnes_hut.html#a9e0854f14c9af45868e8f557959b5d01">More...</a><br /></td></tr>
-<tr class="separator:a9e0854f14c9af45868e8f557959b5d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1961a7b470af406e11299d9d224c210a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a1961a7b470af406e11299d9d224c210a">G</a></td></tr>
-<tr class="memdesc:a1961a7b470af406e11299d9d224c210a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravitational constant. Changes depending on units.  <a href="class_gravitational___barnes_hut.html#a1961a7b470af406e11299d9d224c210a">More...</a><br /></td></tr>
 <tr class="separator:a1961a7b470af406e11299d9d224c210a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0854f14c9af45868e8f557959b5d01"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___barnes_hut.html#a9e0854f14c9af45868e8f557959b5d01">softening</a></td></tr>
+<tr class="separator:a9e0854f14c9af45868e8f557959b5d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_abstract___barnes_hut"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_abstract___barnes_hut')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_abstract___barnes_hut.html">Abstract_BarnesHut</a></td></tr>
+<tr class="memitem:a63ec8f9271cb25a413403d7c4716069b inherit pub_attribs_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_octree_node.html">OctreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#a63ec8f9271cb25a413403d7c4716069b">root</a></td></tr>
+<tr class="memdesc:a63ec8f9271cb25a413403d7c4716069b inherit pub_attribs_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root node of the Barnes-Hut tree.  <a href="class_abstract___barnes_hut.html#a63ec8f9271cb25a413403d7c4716069b">More...</a><br /></td></tr>
+<tr class="separator:a63ec8f9271cb25a413403d7c4716069b inherit pub_attribs_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74c00f4e725f9de20bbe82d53a136c9 inherit pub_attribs_class_abstract___barnes_hut"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___barnes_hut.html#ab74c00f4e725f9de20bbe82d53a136c9">theta</a></td></tr>
+<tr class="memdesc:ab74c00f4e725f9de20bbe82d53a136c9 inherit pub_attribs_class_abstract___barnes_hut"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta parameter for Barnes-Hut algorithm.  <a href="class_abstract___barnes_hut.html#ab74c00f4e725f9de20bbe82d53a136c9">More...</a><br /></td></tr>
+<tr class="separator:ab74c00f4e725f9de20bbe82d53a136c9 inherit pub_attribs_class_abstract___barnes_hut"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A single-threaded Barnes-Hut force computer </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00055">55</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00190">190</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2de5a99f7ccebc242703f2b5e86305ca" name="a2de5a99f7ccebc242703f2b5e86305ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2de5a99f7ccebc242703f2b5e86305ca">&#9670;&nbsp;</a></span>Gravitational_BarnesHut()</h2>
@@ -171,9 +186,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. Performs unit conversions on <a class="el" href="class_gravitational___barnes_hut.html#a1961a7b470af406e11299d9d224c210a" title="Gravitational constant. Changes depending on units.">G</a>. </p>
+<p>Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">theta</td><td>Theta parameter for the Barnes-Hut algorithm </td></tr>
     <tr><td class="paramname">softening</td><td>Softening parameter </td></tr>
     <tr><td class="paramname">l</td><td><a class="el" href="namespace_unit.html">Unit</a> of length </td></tr>
     <tr><td class="paramname">m</td><td><a class="el" href="namespace_unit.html">Unit</a> of mass </td></tr>
@@ -185,8 +201,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad512d41a482e70d4ec49c4dc2522c580" name="ad512d41a482e70d4ec49c4dc2522c580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad512d41a482e70d4ec49c4dc2522c580">&#9670;&nbsp;</a></span>computeForces()</h2>
+<a id="a350e445bda341ff0443da48cb336ace8" name="a350e445bda341ff0443da48cb336ace8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a350e445bda341ff0443da48cb336ace8">&#9670;&nbsp;</a></span>pairAcceleration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,22 +211,34 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Gravitational_BarnesHut::computeForces </td>
+          <td class="memname">void Gravitational_BarnesHut::pairAcceleration </td>
           <td>(</td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix3Xd &gt;&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::Vector3d &gt;&#160;</td>
+          <td class="paramname"><em>a_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>m</em>&#160;</td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_j</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -220,60 +248,59 @@ Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Recalculates acceleration matrix using object positions and masses. </p>
+<p>Computes acceleration from Newtonian gravitation between two particles i and j. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>Acceleration matrix </td></tr>
-    <tr><td class="paramname">x</td><td>Position matrix </td></tr>
-    <tr><td class="paramname">m</td><td>Mass vector </td></tr>
+    <tr><td class="paramname">a_i</td><td></td></tr>
+    <tr><td class="paramname">x_i</td><td></td></tr>
+    <tr><td class="paramname">x_j</td><td></td></tr>
+    <tr><td class="paramname">m_i</td><td></td></tr>
+    <tr><td class="paramname">m_j</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_force_computer.html#aa4aefade088df1c546b2a4d222c82202">ForceComputer</a>.</p>
+<p>Implements <a class="el" href="class_dynamics_engine.html#ad3e361aa533c674b4f89934739b5f646">DynamicsEngine</a>.</p>
 
 </div>
 </div>
-<a id="af255aa4f09c7e72e0679c93543449d2e" name="af255aa4f09c7e72e0679c93543449d2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af255aa4f09c7e72e0679c93543449d2e">&#9670;&nbsp;</a></span>threadComputeForces()</h2>
+<a id="af826f02e116504152359387f99a7da32" name="af826f02e116504152359387f99a7da32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af826f02e116504152359387f99a7da32">&#9670;&nbsp;</a></span>pairPotentialEnergy()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Gravitational_BarnesHut::threadComputeForces </td>
+          <td class="memname">double Gravitational_BarnesHut::pairPotentialEnergy </td>
           <td>(</td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::Matrix3Xd &gt;&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_j</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>endIdx</em>&#160;</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_j</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,17 +308,26 @@ Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Function for threads. Computes the acceleration of bodies from indices startIdx to endIdx (endIdx not included) </p>
+<p>Returns the gravitational potential energy between a pair of particles i and j. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td></td></tr>
-    <tr><td class="paramname">m</td><td></td></tr>
+    <tr><td class="paramname">x_i</td><td>Position of i </td></tr>
+    <tr><td class="paramname">x_j</td><td>Position of j </td></tr>
+    <tr><td class="paramname">m_i</td><td>Mass of i </td></tr>
+    <tr><td class="paramname">m_j</td><td>Mass of j </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_dynamics_engine.html#a4ec82b933c5770b3dd1274da24101531">DynamicsEngine</a>.</p>
 
 </div>
 </div>
@@ -308,27 +344,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gravitational constant. Changes depending on units. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00060">60</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a4425946d0d8148b12bfd5410cb587c63" name="a4425946d0d8148b12bfd5410cb587c63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4425946d0d8148b12bfd5410cb587c63">&#9670;&nbsp;</a></span>root</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_octree_node.html">OctreeNode</a>* Gravitational_BarnesHut::root</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Root node of the Barnes-Hut tree. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00057">57</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00192">192</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 
 </div>
 </div>
@@ -344,27 +360,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Softening parameter for non-colliding n-body sim. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00059">59</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a0c563b8138e1b48bba586232949c02d9" name="a0c563b8138e1b48bba586232949c02d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c563b8138e1b48bba586232949c02d9">&#9670;&nbsp;</a></span>theta</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double Gravitational_BarnesHut::theta</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Theta parameter for Barnes-Hut algorithm. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00058">58</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00193">193</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 
 </div>
 </div>

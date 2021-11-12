@@ -93,30 +93,38 @@ $(document).ready(function(){initNavTree('class_gravitational___direct.html','')
 
 <p><code>#include &lt;<a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_force_computer.html">ForceComputer</a>.</p>
+<p>Inherits <a class="el" href="class_abstract___direct.html">Abstract_Direct</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3cf81cb7516b8b488ae1d2e3956ae832"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a3cf81cb7516b8b488ae1d2e3956ae832">Gravitational_Direct</a> (double <a class="el" href="class_gravitational___direct.html#a98aef42c79648cd4290b8290455d97c9">softening</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> l=<a class="el" href="namespace_unit.html#a751e605750f98496b219e97e55dce03c">Unit::Meter</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> m=<a class="el" href="namespace_unit.html#adc9dcdf1e3f70695fbc9572bab2ed159">Unit::Kilogram</a>, <a class="el" href="units_8hpp.html#a86e89cbe1fee619005bafce52850ab0c">unit_t</a> t=<a class="el" href="namespace_unit.html#a543ac4de43c7f996c28f7093938e98fb">Unit::Second</a>)</td></tr>
-<tr class="memdesc:a3cf81cb7516b8b488ae1d2e3956ae832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. Performs unit conversions on <a class="el" href="class_gravitational___direct.html#af5678abf0ef5a7045baed661a6f9b12f" title="Gravitational constant. Changes depending on units.">G</a>.  <a href="class_gravitational___direct.html#a3cf81cb7516b8b488ae1d2e3956ae832">More...</a><br /></td></tr>
+<tr class="memdesc:a3cf81cb7516b8b488ae1d2e3956ae832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object.  <a href="class_gravitational___direct.html#a3cf81cb7516b8b488ae1d2e3956ae832">More...</a><br /></td></tr>
 <tr class="separator:a3cf81cb7516b8b488ae1d2e3956ae832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61908eb1b05e749cc2278791219e0be1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a61908eb1b05e749cc2278791219e0be1">computeForces</a> (Eigen::Ref&lt; Eigen::MatrixXd &gt; a, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;m)</td></tr>
-<tr class="memdesc:a61908eb1b05e749cc2278791219e0be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculates acceleration matrix using object positions and masses.  <a href="class_gravitational___direct.html#a61908eb1b05e749cc2278791219e0be1">More...</a><br /></td></tr>
-<tr class="separator:a61908eb1b05e749cc2278791219e0be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba650690a351fa554f0dd65efbc451b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a1ba650690a351fa554f0dd65efbc451b">pairAcceleration</a> (Eigen::Ref&lt; Eigen::Vector3d &gt; a_i, const Eigen::Vector3d &amp;x_i, const Eigen::Vector3d &amp;x_j, double m_i, double m_j) override</td></tr>
+<tr class="memdesc:a1ba650690a351fa554f0dd65efbc451b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes acceleration from Newtonian gravitation between two particles i and j.  <a href="class_gravitational___direct.html#a1ba650690a351fa554f0dd65efbc451b">More...</a><br /></td></tr>
+<tr class="separator:a1ba650690a351fa554f0dd65efbc451b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84fc67125d75fac5734baa906932109d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a84fc67125d75fac5734baa906932109d">pairPotentialEnergy</a> (const Eigen::Vector3d &amp;x_i, const Eigen::Vector3d &amp;x_j, double m_i, double m_j) override</td></tr>
+<tr class="memdesc:a84fc67125d75fac5734baa906932109d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the gravitational potential energy between a pair of particles i and j.  <a href="class_gravitational___direct.html#a84fc67125d75fac5734baa906932109d">More...</a><br /></td></tr>
+<tr class="separator:a84fc67125d75fac5734baa906932109d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_abstract___direct"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstract___direct')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstract___direct.html">Abstract_Direct</a></td></tr>
+<tr class="memitem:a2dc3a9ca728f4fac38643116676b99ae inherit pub_methods_class_abstract___direct"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract___direct.html#a2dc3a9ca728f4fac38643116676b99ae">updateAccelerations</a> (Eigen::Ref&lt; Eigen::Matrix3Xd &gt; a, const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m) override</td></tr>
+<tr class="memdesc:a2dc3a9ca728f4fac38643116676b99ae inherit pub_methods_class_abstract___direct"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes force between each pair of particles individually.  <a href="class_abstract___direct.html#a2dc3a9ca728f4fac38643116676b99ae">More...</a><br /></td></tr>
+<tr class="separator:a2dc3a9ca728f4fac38643116676b99ae inherit pub_methods_class_abstract___direct"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_dynamics_engine"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_dynamics_engine')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_dynamics_engine.html">DynamicsEngine</a></td></tr>
+<tr class="memitem:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dynamics_engine.html#ae06dfaeee50918cc335862ed112d1274">totalPotentialEnergy</a> (const Eigen::Ref&lt; const Eigen::Matrix3Xd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::RowVectorXd &gt; &amp;m)</td></tr>
+<tr class="memdesc:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the potential energy of a system based on particle positions and masses.  <a href="class_dynamics_engine.html#ae06dfaeee50918cc335862ed112d1274">More...</a><br /></td></tr>
+<tr class="separator:ae06dfaeee50918cc335862ed112d1274 inherit pub_methods_class_dynamics_engine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a98aef42c79648cd4290b8290455d97c9"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a98aef42c79648cd4290b8290455d97c9">softening</a></td></tr>
-<tr class="memdesc:a98aef42c79648cd4290b8290455d97c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Softening parameter for non-colliding n-body sim.  <a href="class_gravitational___direct.html#a98aef42c79648cd4290b8290455d97c9">More...</a><br /></td></tr>
-<tr class="separator:a98aef42c79648cd4290b8290455d97c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5678abf0ef5a7045baed661a6f9b12f"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#af5678abf0ef5a7045baed661a6f9b12f">G</a></td></tr>
-<tr class="memdesc:af5678abf0ef5a7045baed661a6f9b12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravitational constant. Changes depending on units.  <a href="class_gravitational___direct.html#af5678abf0ef5a7045baed661a6f9b12f">More...</a><br /></td></tr>
 <tr class="separator:af5678abf0ef5a7045baed661a6f9b12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98aef42c79648cd4290b8290455d97c9"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gravitational___direct.html#a98aef42c79648cd4290b8290455d97c9">softening</a></td></tr>
+<tr class="separator:a98aef42c79648cd4290b8290455d97c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A force computer that directly computes gravitational force between each pair of objects. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00031">31</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00144">144</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3cf81cb7516b8b488ae1d2e3956ae832" name="a3cf81cb7516b8b488ae1d2e3956ae832"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cf81cb7516b8b488ae1d2e3956ae832">&#9670;&nbsp;</a></span>Gravitational_Direct()</h2>
@@ -156,7 +164,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. Performs unit conversions on <a class="el" href="class_gravitational___direct.html#af5678abf0ef5a7045baed661a6f9b12f" title="Gravitational constant. Changes depending on units.">G</a>. </p>
+<p>Construct a new <a class="el" href="class_gravitational___direct.html">Gravitational_Direct</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">softening</td><td>Softening parameter </td></tr>
@@ -170,8 +178,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a61908eb1b05e749cc2278791219e0be1" name="a61908eb1b05e749cc2278791219e0be1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61908eb1b05e749cc2278791219e0be1">&#9670;&nbsp;</a></span>computeForces()</h2>
+<a id="a1ba650690a351fa554f0dd65efbc451b" name="a1ba650690a351fa554f0dd65efbc451b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ba650690a351fa554f0dd65efbc451b">&#9670;&nbsp;</a></span>pairAcceleration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,22 +188,34 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Gravitational_Direct::computeForces </td>
+          <td class="memname">void Gravitational_Direct::pairAcceleration </td>
           <td>(</td>
-          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::Vector3d &gt;&#160;</td>
+          <td class="paramname"><em>a_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;&#160;</td>
-          <td class="paramname"><em>m</em>&#160;</td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_j</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -205,22 +225,86 @@ Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Recalculates acceleration matrix using object positions and masses. </p>
+<p>Computes acceleration from Newtonian gravitation between two particles i and j. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>Acceleration matrix </td></tr>
-    <tr><td class="paramname">x</td><td>Position matrix </td></tr>
-    <tr><td class="paramname">m</td><td>Mass vector </td></tr>
+    <tr><td class="paramname">a_i</td><td></td></tr>
+    <tr><td class="paramname">x_i</td><td></td></tr>
+    <tr><td class="paramname">x_j</td><td></td></tr>
+    <tr><td class="paramname">m_i</td><td></td></tr>
+    <tr><td class="paramname">m_j</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_force_computer.html#a623304f72955c18d5ee1bff714c4c704">ForceComputer</a>.</p>
+<p>Implements <a class="el" href="class_dynamics_engine.html#ad3e361aa533c674b4f89934739b5f646">DynamicsEngine</a>.</p>
+
+</div>
+</div>
+<a id="a84fc67125d75fac5734baa906932109d" name="a84fc67125d75fac5734baa906932109d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84fc67125d75fac5734baa906932109d">&#9670;&nbsp;</a></span>pairPotentialEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Gravitational_Direct::pairPotentialEnergy </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>x_j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the gravitational potential energy between a pair of particles i and j. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_i</td><td>Position of i </td></tr>
+    <tr><td class="paramname">x_j</td><td>Position of j </td></tr>
+    <tr><td class="paramname">m_i</td><td>Mass of i </td></tr>
+    <tr><td class="paramname">m_j</td><td>Mass of j </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_dynamics_engine.html#a4ec82b933c5770b3dd1274da24101531">DynamicsEngine</a>.</p>
 
 </div>
 </div>
@@ -237,9 +321,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gravitational constant. Changes depending on units. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00034">34</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00146">146</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 
 </div>
 </div>
@@ -255,9 +337,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Softening parameter for non-colliding n-body sim. </p>
-
-<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00033">33</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="force__computer_8hpp_source.html#l00147">147</a> of file <a class="el" href="force__computer_8hpp_source.html">force_computer.hpp</a>.</p>
 
 </div>
 </div>

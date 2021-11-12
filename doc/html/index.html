@@ -87,10 +87,16 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_README"></a>A portable n-body simulation tool for C++.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Cold Collapse   </th><th class="markdownTableHeadCenter">Rotating Stars    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><img src="./demo/cold_collapse_demo.gif" alt="" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="./demo/rotating_demo.gif" alt="" class="inline"/>   </td></tr>
+</table>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Features</h1>
 <ul>
-<li>Multithreaded, vectorized, GPU accelerated</li>
+<li>Multithreaded, vectorized, optimized</li>
 <li>Convenient, portable and customizable:<ul>
 <li>Plug and play: Little initial setup required, lots of parameters to fiddle with (Customizable integrators, force computation, etc.).</li>
 <li>Wide range of applications: From astrodynamics to molecular simulations.</li>
@@ -99,19 +105,16 @@ Features</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Compiling From Source</h1>
-<p >CMake and g++ must be installed.\ To use CUDA, the toolkit must be installed on the system with <code>nvcc</code> in PATH. On Windows, <code>MSVC</code> must be used instead of g++.</p>
+<p >CMake and g++ must be installed.\ On Windows, <code>MSVC</code> must be used instead of g++.</p>
 <p >In the project root,</p>
-<p ><b>Windows (MSVC)</b>: </p><div class="fragment"><div class="line">cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release</div>
+<p ><b>Windows (MSVC)</b>: </p><div class="fragment"><div class="line">cmake -S . -B build/ -D NBT_BUILD_TESTS=OFF</div>
 <div class="line">cd build/</div>
 <div class="line">msbuild ALL_BUILD.vcxproj</div>
-</div><!-- fragment --><p ><b>Linux</b>: </p><div class="fragment"><div class="line">cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D USE_CUDA=OFF -D BUILD_TYPE=Release</div>
+</div><!-- fragment --><p ><b>Linux</b>: </p><div class="fragment"><div class="line">cmake -S . -B build/ -D NBT_BUILD_TESTS=OFF</div>
 <div class="line">cd build/</div>
 <div class="line">make all</div>
-</div><!-- fragment --><p> To compile tests, change <code>BUILD_TESTS=OFF</code> to <code>BUILD_TESTS=ON</code> in the cmake command.\ Visual demos can be built by setting <code>BUILD_DEMOS=ON</code>\ Similarly, change <code>USE_CUDA=OFF</code> to <code>USE_CUDA=ON</code> to compile for CUDA acceleration.\ The resulting static lib <code>libnbodytool.a</code> can be found in <code>build/src/</code>\ <code>nbodytool_test</code> can be found in <code>build/test/</code> if compiled.\ Demo executables can be found in <code>build/demo/</code></p>
-<p >If using MinGW or MinGW64 on Windows, the process only slightly differs: </p><div class="fragment"><div class="line">cmake -S . -B build/ -D BUILD_DEMOS=OFF -D BUILD_TESTS=OFF -D BUILD_TYPE=Release -G &quot;MinGW Makefiles&quot;</div>
-<div class="line">cd build/</div>
-<div class="line">mingw32-make all</div>
-</div><!-- fragment --><p> CUDA cannot be used on Windows without the MSVC compiler (so MinGW can only compile the CPU version of this lib). </p>
+</div><!-- fragment --><p >To compile tests, change <code>BUILD_TESTS=OFF</code> to <code>BUILD_TESTS=ON</code> in the cmake command.\ The resulting static lib <code>libnbodytool.a</code> can be found in <code>build/src/</code>\ <code>nbodytool_test</code> and <code>benchmark</code> executables can be found in <code>build/test/</code> if compiled.\</p>
+<p >TODO: add list of external libs </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

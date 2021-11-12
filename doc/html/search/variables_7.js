@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lightyear_0',['LightYear',['../namespace_unit.html#a49c17d34bc8c783efa4607e84a99d3bd',1,'Unit']]]
+  ['kilogram_0',['Kilogram',['../namespace_unit.html#adc9dcdf1e3f70695fbc9572bab2ed159',1,'Unit']]],
+  ['kilometer_1',['Kilometer',['../namespace_unit.html#ad2ad13c52dc18e074de52a45c8dc43ac',1,'Unit']]]
 ];

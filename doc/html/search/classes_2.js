@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gravitational_5fdirect_0',['Gravitational_Direct',['../class_gravitational___direct.html',1,'']]]
+  ['eulerintegrator_0',['EulerIntegrator',['../class_euler_integrator.html',1,'']]]
 ];
