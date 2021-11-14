@@ -7,7 +7,7 @@
 
 #include <Eigen>
 #include "integrator.hpp"
-#include "force_computer.hpp"
+#include "dynamics_engine.hpp"
 #include "rigidbody.hpp"
 #include "octree.hpp"
 
@@ -40,6 +40,9 @@ class Simulator {
        
         /*! Returns slice of array structure component with only active objects. */
         Eigen::Ref<Eigen::MatrixXd> active(Eigen::Ref<Eigen::MatrixXd> mat);
+
+        /*! Computes force between each object using #forceComputer. #a is updated. */
+        void updateAccelerations();
     public:
         const Rigidbody maxObjects;         //!< Maximum number of objects in the simulation. Sets the dimensions of the sstructure of arrays.
 
@@ -105,9 +108,6 @@ class Simulator {
 
         /*! Returns Eigen::Matrix ref of object radii */
         Eigen::Ref<const Eigen::RowVectorXd> activeR();
-
-        /*! Computes force between each object using #forceComputer. #a is updated. */
-        void computeForces();
 
         /*! Steps simulation */
         void step();

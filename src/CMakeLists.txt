@@ -8,7 +8,7 @@ if(NBT_USE_CUDA)
 else()
     set(
         SOURCES
-        cpu/force_computer.cpp
+        cpu/dynamics_engine.cpp
         cpu/integrator.cpp
         cpu/octree.cpp
         cpu/simulator.cpp

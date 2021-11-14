@@ -5,8 +5,6 @@
 #include <cstdint>
 #include <limits>
 #include <Eigen>
-#include "integrator.hpp"
-#include "rigidbody.hpp"
 
 Simulator::Simulator(double timeStep, uint64_t maxObjects, Integrator* integrator, DynamicsEngine* dynamicsEngine)
 : timeStep(timeStep)
@@ -195,7 +193,7 @@ Eigen::Ref<const Eigen::RowVectorXd> Simulator::activeR() {
     return this->active(this->r);
 }
 
-void Simulator::computeForces() {
+void Simulator::updateAccelerations() {
     this->dynamicsEngine->updateAccelerations(
         this->active(this->a),
         this->active(this->pos),
@@ -205,6 +203,7 @@ void Simulator::computeForces() {
 
 
 void Simulator::step() {
+    this->updateAccelerations();
     this->integrator->integrate(
         this->timeStep,
         this->active(this->a),

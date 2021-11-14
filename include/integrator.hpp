@@ -1,5 +1,5 @@
-#ifndef NBT_INTEGRATOR
-#define NBT_INTEGRATOR
+#ifndef NBT_INTEGRATOR_HPP
+#define NBT_INTEGRATOR_HPP
 
 #include <Eigen>
 

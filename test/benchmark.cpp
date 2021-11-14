@@ -17,19 +17,13 @@ void benchmark(Simulator& sim, int iters, const std::string& name) {
               << "Average over " << iters << " iterations."       << std::endl;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-    double stepAvg = 0, computeForcesAvg = 0;
+    double stepAvg = 0;
     for (int i = 0; i < iters; ++i) {
-        start = std::chrono::high_resolution_clock::now();
-        sim.computeForces();
-        end   = std::chrono::high_resolution_clock::now();
-        computeForcesAvg += std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-
         start = std::chrono::high_resolution_clock::now();
         sim.step();
         end   = std::chrono::high_resolution_clock::now();
         stepAvg += std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     }
-    std::cout << "computeForces(): " << computeForcesAvg/iters << " ms" << std::endl;
     std::cout << "step(): " << stepAvg/iters << " ms" << std::endl << std::endl;
 }
 
@@ -44,7 +38,6 @@ void energyConservationTest(Simulator& sim, int iters, const std::string& name) 
     double avgEnergyChange = 0;
     double prevEnergy = initialEnergy;
     for (int i = 0; i < iters; ++i) {
-        sim.computeForces();
         sim.step();
         double currEnergy = sim.totalEnergy();
         double energyChange = currEnergy - prevEnergy;

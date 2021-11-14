@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "simulator.hpp"
-#include "integrator.hpp"
-#include "force_computer.hpp"
+#include "nbodytool.hpp"
 
 
 // Simulator2d
