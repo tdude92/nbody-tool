@@ -11,7 +11,6 @@ void EulerIntegrator::integrate(double dt, const Eigen::Ref<const Eigen::MatrixX
 
 /* class VerletIntegrator */
 
-
 void VerletIntegrator::integrate(double dt, const Eigen::Ref<const Eigen::MatrixXd>& a,
                                 Eigen::Ref<Eigen::MatrixXd> v, Eigen::Ref<Eigen::MatrixXd> x) {
     if (!this->isFirstIteration) {
