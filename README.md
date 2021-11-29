@@ -18,7 +18,7 @@ int main() {
     Simulator sim(
         1,                              // Time passed per simulation step
         1000,                           // Maximum number of bodies
-        new VerletIntegrator(),         // Integrator (Verlet is reccommended)
+        new VerletIntegrator(),         // Integrator (Verlet is recommended)
         new Gravitational_BarnesHut(
             1,                          // Barnes-Hut theta parameter
             1,                          // Softening parameter
