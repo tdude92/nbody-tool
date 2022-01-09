@@ -13,6 +13,9 @@ Cold Collapse                  |  Rotating Stars
 
 ## Quick Start
 ```
+#include <Eigen>
+#include "nbodytool.hpp"
+
 int main() {
     // Create a simulation object
     Simulator sim(
@@ -71,4 +74,5 @@ The resulting static lib `libnbodytool.a` can be found in `build/src/`\
 `nbodytool_test` and `benchmark` executables can be found in `build/test/` if compiled.\
 
 
-TODO: add list of external libs
+### Eigen
+[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) is a computer linear algebra library used by this project to optimize vector operations using BLAS and vectorization techniques.
