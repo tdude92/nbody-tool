@@ -71,7 +71,7 @@ make all
 
 To compile tests, change `BUILD_TESTS=OFF` to `BUILD_TESTS=ON` in the cmake command.\
 The resulting static lib `libnbodytool.a` can be found in `build/src/`\
-`nbodytool_test` and `benchmark` executables can be found in `build/test/` if compiled.\
+`nbodytool_test` and `benchmark` executables can be found in `build/test/` if compiled.
 
 
 ### Eigen
